@@ -291,7 +291,7 @@ button { font: inherit; cursor: pointer; }
 .svc__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .svc__card { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: #fff; transition: transform .25s, box-shadow .25s, border-color .25s; }
 .svc__card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 30px 50px -28px rgba(13,27,46,.3); }
-.svc__media { display: grid; place-items: center; height: 200px; color: var(--accent); background: radial-gradient(300px 160px at 70% 0%, #dcebff, transparent 70%), var(--tint); }
+.svc__media { display: grid; place-items: center; aspect-ratio: 16 / 9; color: var(--accent); background: radial-gradient(300px 160px at 70% 0%, #dcebff, transparent 70%), var(--tint); }
 .svc__media img { width: 100%; height: 100%; object-fit: cover; }
 .svc__body { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; padding: 26px 28px 30px; flex: 1; }
 .svc__body h3 { font-size: 24px; }

@@ -67,10 +67,10 @@ export const steps = [
 
 // Complete Technology Solutions & Services: 2x2 cards. Add `img: '/img/...'` to a card to show a photo instead of the icon.
 export const services = [
-  { title: 'Hardware Design & Manufacturing', text: 'Custom engineering, OEM/ODM manufacturing, and product development for advanced cellular and IoT applications.', link: 'Explore Hardware Services', icon: steps[1].icon },
-  { title: 'Systems Integration & Solutions', text: 'Integrated 5G, IoT, VoIP, security, and cloud solutions engineered for reliable operations.', link: 'Explore Solutions', icon: steps[2].icon },
-  { title: 'Installation & Deployment', text: 'Professional installation, staging, commissioning, and coordinated deployment for projects of any scale.', link: 'Explore Deployment Services', icon: steps[3].icon },
-  { title: 'Managed Services & Support', text: 'Centralized monitoring, remote device management, connectivity services, and SLA-based support.', link: 'Explore Managed Services', icon: steps[4].icon },
+  { title: 'Hardware Design & Manufacturing', img: '/img/hardware-design.jpg', text: 'Custom engineering, OEM/ODM manufacturing, and product development for advanced cellular and IoT applications.', link: 'Explore Hardware Services', icon: steps[1].icon },
+  { title: 'Systems Integration & Solutions', img: '/img/systems-integration.jpg', text: 'Integrated 5G, IoT, VoIP, security, and cloud solutions engineered for reliable operations.', link: 'Explore Solutions', icon: steps[2].icon },
+  { title: 'Installation & Deployment', img: '/img/installation-deployment.jpg', text: 'Professional installation, staging, commissioning, and coordinated deployment for projects of any scale.', link: 'Explore Deployment Services', icon: steps[3].icon },
+  { title: 'Managed Services & Support', img: '/img/managed-services.jpg', text: 'Centralized monitoring, remote device management, connectivity services, and SLA-based support.', link: 'Explore Managed Services', icon: steps[4].icon },
 ]
 
 export const industries = [
