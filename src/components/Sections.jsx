@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { stack, industries, stats, segments, capabilities, footer } from '../data/content'
+import { steps, services, industries, projects, capabilities, footer, contact } from '../data/content'
 import { Logo } from './Header'
 
 const YEAR = new Date().getFullYear()
@@ -8,24 +8,50 @@ const Arrow = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
 )
 
-export function Stack() {
+const Icon = ({ d, size = 26 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
+)
+
+export function Steps() {
   return (
-    <section className="section stack">
+    <section className="steps">
+      <div className="container">
+        <h2>One Partner. Complete Technology Solutions.</h2>
+        <ul className="steps__grid">
+          {steps.map((s) => (
+            <li key={s.title}>
+              <span className="steps__icon"><Icon d={s.icon} /></span>
+              <b>{s.title}</b>
+            </li>
+          ))}
+        </ul>
+        <p>From initial concept through deployment and ongoing operations.</p>
+      </div>
+    </section>
+  )
+}
+
+export function Services() {
+  return (
+    <section className="section svc" id="services">
       <div className="container">
         <div className="section__head">
-          <p className="eyebrow">One ecosystem</p>
-          <h2>Connected hardware. Integrated solutions. Built for deployment.</h2>
-          <p>TickIoT designs, manufactures and integrates the technology that keeps critical operations connected, from 5G routers and antennas to voice, public safety, power and device management.</p>
+          <p className="eyebrow">Complete Technology Solutions &amp; Services</p>
+          <h2>One Partner. End-to-End Technology Solutions.</h2>
+          <p>From concept to deployment and beyond, tickIoT delivers integrated technology solutions that simplify connectivity, improve operational efficiency, and support mission-critical infrastructure. We combine hardware engineering, wireless communications, systems integration, field deployment, and managed services to provide reliable, scalable solutions.</p>
         </div>
-        <div className="stack__grid">
-          {stack.map((s, i) => (
-            <article key={s.tag} className="stack__card">
-              <span className="stack__num">0{i + 1}</span>
-              <span className="tag">{s.tag}</span>
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
-              <a href="#" className="link">{s.link} <Arrow /></a>
-            </article>
+        <div className="svc__grid">
+          {services.map((s) => (
+            <a key={s.title} href="#" className="svc__card">
+              <div className="svc__media">
+                {s.img ? <img src={s.img} alt="" loading="lazy" /> : <Icon d={s.icon} size={64} />}
+              </div>
+              <div className="svc__body">
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+                <span className="link">{s.link} <Arrow /></span>
+              </div>
+            </a>
           ))}
         </div>
       </div>
@@ -39,7 +65,7 @@ export function Industries() {
     <section className="section">
       <div className="container">
         <div className="section__head">
-          <p className="eyebrow">Solutions</p>
+          <p className="eyebrow">Industries</p>
           <h2>Built around the way you operate.</h2>
         </div>
         <div className={`sol ${active !== null ? 'has-open' : ''}`} onMouseLeave={() => setActive(null)}>
@@ -74,8 +100,8 @@ export function Why() {
     <section className="why">
       <div className="container">
         <div className="section__head">
-          <p className="eyebrow">Why TickIoT</p>
-          <h2>One partner. The complete connectivity stack.</h2>
+          <p className="eyebrow">Why tickIoT</p>
+          <h2>One partner. From design to ongoing support.</h2>
         </div>
         <ol className="why__grid">
           {capabilities.map((c, n) => (
@@ -100,36 +126,15 @@ export function Proof() {
           <h2>Connectivity already deployed in the field.</h2>
           <p>Supporting organizations across government, public safety, education, transportation and enterprise environments.</p>
         </div>
-        <div className="stats">
-          {stats.map((s) => (
-            <div key={s.label}><strong>{s.value}</strong><span>{s.label}</span></div>
+        <div className="proj__grid">
+          {projects.map((p) => (
+            <article key={p.title} className="proj__card">
+              <span className="tag">{p.tag}</span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </article>
           ))}
         </div>
-        <div className="logos" aria-label="Customer logos placeholder">
-          {segments.map((s) => <span key={s}>{s}</span>)}
-        </div>
-        <p className="proof__note">Customer logos and deployment map to be added from approved company materials.</p>
-      </div>
-    </section>
-  )
-}
-
-export function OEM() {
-  return (
-    <section className="oem">
-      <div className="container oem__grid">
-        <a href="#" className="oem__card">
-          <span className="tag">OEM / ODM</span>
-          <h3>Need hardware that doesn't exist yet?</h3>
-          <p>Custom hardware design, manufacturing and private label from the team that builds TickIoT products.</p>
-          <span className="link">Build with us <Arrow /></span>
-        </a>
-        <a href="#" className="oem__card">
-          <span className="tag">Services</span>
-          <h3>Deployed, managed and supported.</h3>
-          <p>Managed connectivity, UCaaS, PhoneMDM, installation and support, so your team can focus on operations.</p>
-          <span className="link">Explore services <Arrow /></span>
-        </a>
       </div>
     </section>
   )
@@ -139,8 +144,7 @@ export function CTA() {
   return (
     <section className="cta" id="quote">
       <div className="container cta__inner">
-        <h2>Planning your next deployment?</h2>
-        <p>Tell us what you're trying to connect. We'll help you build the right solution.</p>
+        <h2>Whether you need a single device, a customized hardware platform, or a fully managed deployment, tickIoT can help.</h2>
         <div className="hero__actions hero__actions--center">
           <a href="#" className="btn btn--primary btn--lg">Request a Quote</a>
           <a href="#" className="btn btn--ghost btn--lg">Talk to an Expert</a>
@@ -156,8 +160,16 @@ export function Footer() {
       <div className="container footer__grid">
         <div className="footer__brand">
           <Logo />
-          <p>Connectivity built for the real world.</p>
-          <a href="#quote" className="btn btn--primary">Request a Quote</a>
+          <p>Connected Hardware. Integrated Solutions. Built for Deployment.</p>
+          <div className="footer__ctas">
+            <a href="#quote" className="btn btn--primary">Request a Quote</a>
+            <a href="#quote" className="btn btn--ghost">Talk to an Expert</a>
+          </div>
+          <ul className="footer__contact">
+            <li><b>Contact Sales</b></li>
+            {contact.email && <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
+            {contact.phone && <li><a href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`}>{contact.phone}</a></li>}
+          </ul>
         </div>
         {footer.map((c) => (
           <div key={c.title}>
@@ -167,7 +179,7 @@ export function Footer() {
         ))}
       </div>
       <div className="container footer__bar">
-        <span>© {YEAR} TickIoT. All rights reserved.</span>
+        <span>© {YEAR} tickIoT. All rights reserved.</span>
         <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
       </div>
     </footer>

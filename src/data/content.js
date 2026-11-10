@@ -2,6 +2,14 @@ const ext = (label) => ({ label, ext: true })
 
 export const nav = [
   {
+    label: 'Solutions',
+    items: [
+      { label: 'Hardware Design & Manufacturing', links: [{ label: 'Custom Hardware Design' }, { label: 'OEM / ODM Manufacturing' }, { label: 'Private Label' }] },
+      { label: 'Systems Integration & Solutions', links: [{ label: '5G & IoT' }, { label: 'VoIP & Voice' }, { label: 'Security & Cloud' }] },
+      { label: 'Installation & Deployment', links: [{ label: 'Staging & Commissioning' }, { label: 'Field Installation' }, { label: 'Project Coordination' }] },
+    ],
+  },
+  {
     label: 'Products',
     items: [
       { label: 'All products' },
@@ -15,28 +23,25 @@ export const nav = [
     ],
   },
   {
-    label: 'Solutions',
+    label: 'Industries',
     items: ['Public Safety', 'Education', 'Transportation', 'Smart Cities', 'Utilities', 'Enterprise'].map((label) => ({
       label,
       links: [{ label: `${label} overview` }, { label: 'Recommended products' }, { label: 'Case studies' }],
     })),
   },
   {
-    label: 'Services',
-    items: [{ label: 'Managed Connectivity' }, { label: 'UCaaS' }, { label: 'PhoneMDM' }, { label: 'Installation & Support' }],
+    label: 'Managed Services',
+    items: [{ label: 'Managed Connectivity' }, { label: 'UCaaS' }, { label: 'PhoneMDM' }, { label: 'Remote Device Management' }, { label: 'SLA-Based Support' }],
   },
   {
-    label: 'OEM / ODM',
-    items: [{ label: 'Custom Hardware Design' }, { label: 'Manufacturing' }, { label: 'Private Label' }],
+    label: 'Company',
+    items: [{ label: 'About' }, { label: 'Partners' }, { label: 'OEM / ODM' }, { label: 'Contact' }],
   },
   {
     label: 'Resources',
     items: [{ label: 'Datasheets' }, { label: 'Case Studies' }, { label: 'Certifications' }, { label: 'Technical Support' }],
   },
-  {
-    label: 'Company',
-    items: [{ label: 'About' }, { label: 'Partners' }, { label: 'Contact' }, { label: 'Request a Quote' }],
-  },
+  { label: 'Contact Sales', href: '#quote' },
 ]
 
 // Order matters: it is the bento-grid order (big card, two on the right, three along the bottom).
@@ -50,10 +55,22 @@ export const categories = [
   { name: 'Software', text: 'PhoneMDM', desc: 'PhoneMDM brings device configuration, monitoring, analytics and alerts into one cloud dashboard.', img: '/img/phonemdm.jpg' },
 ]
 
-export const stack = [
-  { tag: 'Hardware', title: 'Built for the field', text: '5G routers, cellular phones, antennas and public-safety devices designed around real deployments.', link: 'Explore hardware' },
-  { tag: 'Software', title: 'PhoneMDM', text: 'Configure, monitor and update every deployed device from one cloud platform.', link: 'Explore PhoneMDM' },
-  { tag: 'Integration', title: 'Complete systems', text: 'Hardware, connectivity and management delivered as one working deployment.', link: 'See solutions' },
+// "One Partner. Complete Technology Solutions." strip under the hero (icons are 24x24 stroke paths)
+export const steps = [
+  { title: 'Design', icon: 'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z' },
+  { title: 'Manufacture', icon: 'M7 7h10v10H7zM10 10h4v4h-4zM9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4' },
+  { title: 'Integrate', icon: 'M12 4a2 2 0 100 .01M5 19a2 2 0 100 .01M19 19a2 2 0 100 .01M12 6v5M12 11l-6 6M12 11l6 6' },
+  { title: 'Deploy', icon: 'M14.7 6.3a4 4 0 00-5.4 5.1L3 17.7 6.3 21l6.3-6.3a4 4 0 005.1-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z' },
+  { title: 'Monitor', icon: 'M3 5h18v11H3zM8 20h8M12 16v4' },
+  { title: 'Support', icon: 'M4 14v-2a8 8 0 0116 0v2M4 14h3v5H5a1 1 0 01-1-1zM20 14h-3v5h2a1 1 0 001-1zM17 19c0 1.5-2 2-5 2' },
+]
+
+// Complete Technology Solutions & Services: 2x2 cards. Add `img: '/img/...'` to a card to show a photo instead of the icon.
+export const services = [
+  { title: 'Hardware Design & Manufacturing', text: 'Custom engineering, OEM/ODM manufacturing, and product development for advanced cellular and IoT applications.', link: 'Explore Hardware Services', icon: steps[1].icon },
+  { title: 'Systems Integration & Solutions', text: 'Integrated 5G, IoT, VoIP, security, and cloud solutions engineered for reliable operations.', link: 'Explore Solutions', icon: steps[2].icon },
+  { title: 'Installation & Deployment', text: 'Professional installation, staging, commissioning, and coordinated deployment for projects of any scale.', link: 'Explore Deployment Services', icon: steps[3].icon },
+  { title: 'Managed Services & Support', text: 'Centralized monitoring, remote device management, connectivity services, and SLA-based support.', link: 'Explore Managed Services', icon: steps[4].icon },
 ]
 
 export const industries = [
@@ -107,27 +124,29 @@ export const industries = [
   },
 ]
 
-export const stats = [
-  { value: '5G', label: 'NSA & SA ready' },
-  { value: 'Dual-WAN', label: 'Automatic failover' },
-  { value: '1', label: 'Platform for every device' },
-  { value: '24/7', label: 'Remote monitoring' },
+// Featured deployments (subject to customer approval before publishing)
+export const projects = [
+  { tag: 'Transportation', title: 'Transportation Connectivity', text: '5G vehicle connectivity and fleet communications for paratransit operations.' },
+  { tag: 'Public Safety', title: 'Public Safety', text: 'Cellular emergency communications and POTS replacement for critical infrastructure.' },
+  { tag: 'Government & Education', title: 'Government & Education', text: 'Reliable cellular communications, classroom voice services, and centralized device management.' },
 ]
-
-export const segments = ['Government', 'Public Safety', 'Education', 'Transportation', 'Enterprise', 'Industrial']
 
 export const capabilities = [
-  { title: 'Design', text: 'Hardware designed around real deployment requirements.' },
-  { title: 'Manufacturing', text: 'Integrated product development and manufacturing.' },
-  { title: 'Connectivity', text: '5G, LTE, Wi-Fi, GPS and wireless technologies.' },
-  { title: 'Software', text: 'Remote management, monitoring and analytics.' },
-  { title: 'Integration', text: 'Hardware, connectivity and software working together.' },
+  { title: 'Hardware Engineering', text: 'Hardware designed and manufactured around real deployment requirements.' },
+  { title: 'Wireless Connectivity', text: '5G, LTE, Wi-Fi, GPS and wireless technologies.' },
+  { title: 'Systems Integration', text: 'Hardware, connectivity, voice and cloud working together as one solution.' },
+  { title: 'Installation & Deployment', text: 'Staging, commissioning and coordinated field deployment for projects of any scale.' },
+  { title: 'Managed Services', text: 'Centralized monitoring, remote device management and analytics.' },
+  { title: 'Support', text: 'SLA-based support from the team that builds and deploys the technology.' },
 ]
+
+// Direct sales contact details for the footer. Fill these in; empty values are not shown.
+export const contact = { email: '', phone: '' }
 
 export const footer = [
   { title: 'Products', links: ['5G Routers', 'Cellular Voice', 'Public Safety', 'Antennas', 'Power & Solar', 'PhoneMDM'] },
-  { title: 'Solutions', links: ['Public Safety', 'Education', 'Transportation', 'Smart Cities', 'Utilities', 'Enterprise'] },
-  { title: 'Services', links: ['Managed Connectivity', 'UCaaS', 'PhoneMDM', 'Installation & Support'] },
-  { title: 'Resources', links: ['Datasheets', 'Case Studies', 'Certifications', 'Technical Support'] },
+  { title: 'Industries', links: ['Public Safety', 'Education', 'Transportation', 'Smart Cities', 'Utilities', 'Enterprise'] },
+  { title: 'Services', links: ['Hardware Design & Manufacturing', 'Systems Integration', 'Installation & Deployment', 'Managed Services'] },
+  { title: 'Support', links: ['Technical Support', 'Datasheets', 'Certifications', 'PhoneMDM Login'] },
   { title: 'Company', links: ['About', 'Partners', 'OEM / ODM', 'Contact'] },
 ]

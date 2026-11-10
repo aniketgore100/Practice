@@ -3,8 +3,8 @@ import { nav } from '../data/content'
 
 export function Logo() {
   return (
-    <a href="/" className="logo" aria-label="TickIoT home">
-      <img src="/logo.png" alt="TickIoT" className="logo__img" />
+    <a href="/" className="logo" aria-label="tickIoT home">
+      <img src="/logo.png" alt="tickIoT" className="logo__img" />
     </a>
   )
 }
@@ -40,7 +40,11 @@ export default function Header() {
       <div className="container header__bar">
         <Logo />
         <nav className={`nav ${mobile ? 'nav--open' : ''}`} aria-label="Main">
-          {nav.map((item, i) => (
+          {nav.map((item, i) => item.href ? (
+            <div key={item.label} className="nav__item" onMouseEnter={() => setOpen(null)}>
+              <a href={item.href} className="nav__btn nav__link" onClick={() => setMobile(false)}>{item.label}</a>
+            </div>
+          ) : (
             <div key={item.label} className="nav__item" onMouseEnter={() => show(i)}>
               <button
                 className={`nav__btn ${open === i ? 'is-active' : ''}`}

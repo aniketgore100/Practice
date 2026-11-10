@@ -1,7 +1,7 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
 import CategoryCarousel from './components/CategoryCarousel'
-import { Stack, Industries, Why, Proof, OEM, CTA, Footer } from './components/Sections'
+import { Steps, Services, Industries, Why, Proof, CTA, Footer } from './components/Sections'
 
 export default function App() {
   return (
@@ -9,12 +9,12 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <Steps />
         <CategoryCarousel />
-        <Stack />
+        <Services />
         <Industries />
         <Why />
         <Proof />
-        <OEM />
         <CTA />
       </main>
       <Footer />
