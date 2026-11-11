@@ -9,8 +9,8 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <Steps />
         <CategoryCarousel />
+        <Steps />
         <Services />
         <Industries />
         <Why />

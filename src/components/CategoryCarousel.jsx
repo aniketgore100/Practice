@@ -1,39 +1,27 @@
-import { useState } from 'react'
 import { categories } from '../data/content'
 
 const Arrow = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
 )
 
-// Bento grid of product categories: one large card, two stacked beside it, three along the bottom.
+// "Explore Our Products": 3 x 2 grid. Each card = product image, category name, one-line benefit, View Products link.
 export default function CategoryCarousel() {
-  const [open, setOpen] = useState(null) // tap-to-open on touch devices
-
   return (
-    <section className="cats" id="products" aria-label="Product categories">
+    <section className="cats" id="products" aria-label="Products">
       <div className="container">
         <div className="section__head cats__head">
-          {/* <p className="eyebrow">Product categories</p> */}
-          <h2>Everything you need to <span className="grad">deploy anywhere.</span></h2>
+          <h2>Explore Our Products</h2>
+          <p>Find the right technology for your next deployment.</p>
         </div>
-
-        <div className="bento">
-          {categories.map((c, n) => (
-            <a
-              key={c.name}
-              href="#"
-              className={`bento__card bento__card--${n + 1} ${open === n ? 'is-open' : ''}`}
-              onClick={(e) => { if (window.matchMedia('(hover: none)').matches && open !== n) { e.preventDefault(); setOpen(n) } }}
-            >
-              <img src={c.img} alt="" loading="lazy" className="bento__img" />
-              <span className="bento__title">
-                <span className="bento__name">{c.name}</span>
-                <span className="bento__text">{c.text}</span>
-              </span>
-              <span className="bento__desc">
-                <span>{c.desc}</span>
-                <span className="bento__go">Explore <Arrow /></span>
-              </span>
+        <div className="prod__grid">
+          {categories.map((c) => (
+            <a key={c.name} href="#" className="prod__card">
+              <div className="prod__media"><img src={c.img} alt={c.name} loading="lazy" /></div>
+              <div className="prod__body">
+                <h3>{c.name}</h3>
+                <p>{c.text}</p>
+                <span className="prod__link">View Products <Arrow /></span>
+              </div>
             </a>
           ))}
         </div>

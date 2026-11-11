@@ -46,13 +46,14 @@ export const nav = [
 
 // Order matters: it is the bento-grid order (big card, two on the right, three along the bottom).
 // Images are 16:9 renders (optimised copies live in /public/img); the cards are ~16:9 too, so they fill edge to edge.
+// Product tiles, in grid order (3 x 2). Swap `img` for your own product photos any time.
 export const categories = [
-  { name: '5G Connectivity', text: 'Routers & gateways', desc: 'Dual-WAN failover, Wi-Fi 6 and remote management for vehicles, remote sites and fixed deployments.', img: '/img/routers.jpg' },
-  { name: 'Cellular Voice', text: 'Phones & POTS gateways', desc: 'Cellular desk phones and POTS gateways that replace traditional phone cabling.', img: '/img/deskphone.jpg' },
-  { name: 'Antennas', text: '5G, Wi-Fi, GNSS', desc: '5G, Wi-Fi and GNSS antennas that improve wireless performance in the field.', img: '/img/antenna.jpg' },
-  { name: 'Public Safety', text: 'Call boxes & retrofit kits', desc: 'Emergency call boxes and blue-light retrofit kits for public-safety deployments.', img: '/img/emergency-box.jpg' },
-  { name: 'Power & Outdoor', text: 'Solar, UPS, enclosures', desc: 'Solar and battery systems, UPS and outdoor enclosures for weather-ready deployments.', img: '/img/solar.jpg' },
-  { name: 'Software', text: 'PhoneMDM', desc: 'PhoneMDM brings device configuration, monitoring, analytics and alerts into one cloud dashboard.', img: '/img/phonemdm.jpg' },
+  { name: '5G Routers & Modems', text: 'Primary, backup, and vehicle connectivity', img: '/img/routers.jpg' },
+  { name: 'Cellular Desk Phones', text: 'Business calling for desks and mobile teams', img: '/img/deskphone.jpg' },
+  { name: 'POTS Replacement', text: 'Connect existing analog phone lines', img: '/img/deskphone.jpg' },
+  { name: 'Emergency Phones & Call Boxes', text: 'Communications for campuses and public spaces', img: '/img/emergency-box.jpg' },
+  { name: 'Solar & Backup Power', text: 'Power for remote and outdoor equipment', img: '/img/solar.jpg' },
+  { name: 'Antennas & Accessories', text: 'Complete your installation with the right kit', img: '/img/antenna.jpg' },
 ]
 
 // "One Partner. Complete Technology Solutions." strip under the hero (icons are 24x24 stroke paths)
