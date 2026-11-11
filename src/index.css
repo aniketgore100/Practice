@@ -239,7 +239,8 @@ button { font: inherit; cursor: pointer; }
   .nav__btn { height: auto; padding: 14px 12px; width: 100%; justify-content: space-between; text-align: left; border-radius: 10px; }
   .nav__btn::before { inset: 0; border-radius: 10px; }
   .nav__btn::after { display: none; }
-  .mega { position: static; opacity: 1; visibility: visible; transform: none; pointer-events: auto; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  /* inherit visibility/pointer-events from the panel, so a closed menu never blocks touches */
+  .mega { position: static; opacity: 1; visibility: inherit; transform: none; pointer-events: inherit; transition: none; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
   .mega__inner { display: block; width: 100%; padding: 12px 14px 16px; min-height: 0; }
   .mega__list { border-right: 0; min-height: 0; padding-right: 0; }
   .mega__row { padding: 12px 10px; font-size: 15px; }
