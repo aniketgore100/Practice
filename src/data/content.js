@@ -3,6 +3,7 @@ const ext = (label) => ({ label, ext: true })
 export const nav = [
   {
     label: 'Solutions',
+    section: 'services',
     items: [
       { label: 'Hardware Design & Manufacturing', links: [{ label: 'Custom Hardware Design' }, { label: 'OEM / ODM Manufacturing' }, { label: 'Private Label' }] },
       { label: 'Systems Integration & Solutions', links: [{ label: '5G & IoT' }, { label: 'VoIP & Voice' }, { label: 'Security & Cloud' }] },
@@ -11,6 +12,7 @@ export const nav = [
   },
   {
     label: 'Products',
+    section: 'products',
     items: [
       { label: 'All products' },
       { label: '5G Connectivity', links: [{ label: 'RC500' }, { label: 'RC500-T' }, { label: 'RedCap Modems' }, { label: 'Gateways' }] },
@@ -24,6 +26,7 @@ export const nav = [
   },
   {
     label: 'Industries',
+    section: 'industries',
     items: ['Public Safety', 'Education', 'Transportation', 'Smart Cities', 'Utilities', 'Enterprise'].map((label) => ({
       label,
       links: [{ label: `${label} overview` }, { label: 'Recommended products' }, { label: 'Case studies' }],
@@ -31,10 +34,12 @@ export const nav = [
   },
   {
     label: 'Managed Services',
+    section: 'services',
     items: [{ label: 'Managed Connectivity' }, { label: 'UCaaS' }, { label: 'PhoneMDM' }, { label: 'Remote Device Management' }, { label: 'SLA-Based Support' }],
   },
   {
     label: 'Company',
+    section: 'why',
     items: [{ label: 'About' }, { label: 'Partners' }, { label: 'OEM / ODM' }, { label: 'Contact' }],
   },
   {

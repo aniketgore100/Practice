@@ -62,7 +62,7 @@ export function Services() {
 export function Industries() {
   const [active, setActive] = useState(null)
   return (
-    <section className="section">
+    <section className="section" id="industries">
       <div className="container">
         <div className="section__head">
           <p className="eyebrow">Industries</p>
@@ -97,7 +97,7 @@ export function Industries() {
 
 export function Why() {
   return (
-    <section className="why">
+    <section className="why" id="why">
       <div className="container">
         <div className="section__head">
           <p className="eyebrow">Why tickIoT</p>
@@ -161,10 +161,6 @@ export function Footer() {
         <div className="footer__brand">
           <Logo />
           <p>Connected Hardware. Integrated Solutions. Built for Deployment.</p>
-          <div className="footer__ctas">
-            <a href="#quote" className="btn btn--primary">Request a Quote</a>
-            <a href="#quote" className="btn btn--ghost">Talk to an Expert</a>
-          </div>
           <ul className="footer__contact">
             <li><b>Contact Sales</b></li>
             {contact.email && <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
