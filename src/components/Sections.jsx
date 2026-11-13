@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { steps, services, industries, projects, capabilities, footer, contact } from '../data/content'
+import { steps, services, industries, projects, capabilities, footer, contact, customerLogos } from '../data/content'
 import { Logo } from './Header'
 
 const YEAR = new Date().getFullYear()
@@ -11,6 +11,24 @@ const Arrow = () => (
 const Icon = ({ d, size = 26 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
 )
+
+// "Brought internet to": infinite right-to-left auto-scrolling logo strip
+export function TrustedBy() {
+  return (
+    <section className="trusted" aria-label="Brought internet to">
+      <div className="container">
+        <h2 className="trusted__head">Brought internet to</h2>
+        <div className="trusted__track" role="presentation">
+          <ul className="trusted__rail">
+            {[...customerLogos, ...customerLogos].map((c, n) => (
+              <li key={`${c.name}-${n}`}><img src={c.img} alt={c.name} loading="lazy" /></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export function Steps() {
   return (

@@ -90,7 +90,7 @@ export default function Header() {
       <div className="container header__bar">
         <Logo />
 
-        <div className={`header__panel ${mobile ? 'is-open' : ''}`} data-lenis-prevent>
+        <div className={`header__panel ${mobile ? 'is-open' : ''}`}>
           <nav className="nav" aria-label="Main">
             {nav.map((item, i) => item.href ? (
               <div key={item.label} className="nav__item" onMouseEnter={() => { if (!isMobile) setOpen(null) }}>

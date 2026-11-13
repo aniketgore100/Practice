@@ -38,15 +38,13 @@ export const nav = [
     items: [{ label: 'Managed Connectivity' }, { label: 'UCaaS' }, { label: 'PhoneMDM' }, { label: 'Remote Device Management' }, { label: 'SLA-Based Support' }],
   },
   {
-    label: 'Company',
+    label: 'About Us',
     section: 'why',
-    items: [{ label: 'About' }, { label: 'Partners' }, { label: 'OEM / ODM' }, { label: 'Contact' }],
+    items: [
+      { label: 'About' }, { label: 'Partners' }, { label: 'OEM / ODM' }, { label: 'Contact' },
+      { label: 'Datasheets' }, { label: 'Case Studies' }, { label: 'Certifications' }, { label: 'Technical Support' },
+    ],
   },
-  {
-    label: 'Resources',
-    items: [{ label: 'Datasheets' }, { label: 'Case Studies' }, { label: 'Certifications' }, { label: 'Technical Support' }],
-  },
-  { label: 'Contact Sales', href: '#quote' },
 ]
 
 // Order matters: it is the bento-grid order (big card, two on the right, three along the bottom).
@@ -59,6 +57,37 @@ export const categories = [
   { name: 'Emergency Phones & Call Boxes', text: 'Communications for campuses and public spaces', img: '/img/emergency-box.jpg' },
   { name: 'Solar & Backup Power', text: 'Power for remote and outdoor equipment', img: '/img/solar.jpg' },
   { name: 'Antennas & Accessories', text: 'Complete your installation with the right kit', img: '/img/antenna.jpg' },
+]
+
+// "Trusted by leading companies" logo strip under the hero
+export const customerLogos = [
+  { name: 'County of Los Angeles Fire Department', img: '/customer/la-county-fire-department.png' },
+  { name: 'Torrance Police Department', img: '/customer/torrance-police.png' },
+  { name: 'Los Angeles County Sheriff', img: '/customer/la-county-sheriff.png' },
+  { name: 'City of Los Angeles', img: '/customer/city-of-los-angeles.png' },
+  { name: 'County Sheriff', img: '/customer/county-sheriff-badge.png' },
+  { name: 'Belgrade Police Department', img: '/customer/belgrade-police.png' },
+  { name: 'Los Angeles', img: '/customer/los-angeles-seal.png' },
+  { name: 'Los Angeles Community College District', img: '/customer/la-community-college-district.png' },
+  { name: 'LA Metro', img: '/customer/la-metro.png' },
+  { name: 'City of Bakersfield', img: '/customer/bakersfield.png' },
+  { name: 'La Puente', img: '/customer/la-puente.png' },
+  { name: 'Access', img: '/customer/access.png' },
+  { name: 'West Linn-Wilsonville School District', img: '/customer/west-linn-wilsonville-school-district.png' },
+  { name: 'City of Lewiston', img: '/customer/city-of-lewiston.png' },
+  { name: 'UC Irvine', img: '/customer/uc-irvine.png' },
+  { name: 'Edmonds School District', img: '/customer/edmonds-school-district.png' },
+  { name: 'Monrovia Unified School District', img: '/customer/monrovia-unified-school-district.png' },
+  { name: 'Fountain Valley School District', img: '/customer/fountain-valley-school-district.png' },
+  { name: 'Lost Hills Utility District', img: '/customer/lost-hills-utility-district.png' },
+  { name: 'Dinuba Unified School District', img: '/customer/dinuba-unified-school-district.png' },
+  { name: 'Tustin Unified School District', img: '/customer/tustin-unified-school-district.png' },
+  { name: 'City of Lancaster', img: '/customer/city-of-lancaster.png' },
+  { name: 'City of Malibu', img: '/customer/city-of-malibu.png' },
+  { name: 'City of Calabasas', img: '/customer/city-of-calabasas.png' },
+  { name: 'Center Joint Unified School District', img: '/customer/center-joint-unified-school-district.png' },
+  { name: 'Five Keys Schools and Programs', img: '/customer/five-keys-schools-and-programs.png' },
+  { name: 'Police Department', img: '/customer/police-department-badge.png' },
 ]
 
 // "One Partner. Complete Technology Solutions." strip under the hero (icons are 24x24 stroke paths)
