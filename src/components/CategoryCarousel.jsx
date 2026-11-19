@@ -19,8 +19,10 @@ export default function CategoryCarousel() {
               <div className="prod__media"><img src={c.img} alt={c.name} loading="lazy" /></div>
               <div className="prod__body">
                 <h3>{c.name}</h3>
-                <p>{c.text}</p>
-                <span className="prod__link">View Products <Arrow /></span>
+                <div className="prod__more">
+                  <p>{c.text}</p>
+                  <span className="prod__link">View Products <Arrow /></span>
+                </div>
               </div>
             </a>
           ))}
