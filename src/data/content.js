@@ -28,10 +28,16 @@ export const nav = [
   {
     label: 'Industries',
     section: 'industries',
-    items: ['Public Safety', 'Education', 'Transportation', 'Smart Cities', 'Utilities', 'Enterprise'].map((label) => ({
-      label,
-      links: [{ label: `${label} overview` }, { label: 'Recommended products' }, { label: 'Case studies' }],
-    })),
+    // Same six as the home page's Solutions by Industry cards; each opens the matching products.
+    items: [
+      { label: 'Transportation & Fleet', to: '/products#5g-connectivity' },
+      { label: 'Public Safety', to: '/products#public-safety' },
+      { label: 'Education', to: '/products#cellular-voice' },
+      { label: 'Government & Smart City', to: '/products#5g-connectivity' },
+      { label: 'Critical Facilities', to: '/products#rcvx3' },
+      { label: 'Remote & Off-Grid Sites', to: '/products#power-outdoor' },
+      { label: 'Case studies', to: '/#proof' },
+    ],
   },
   {
     label: 'Managed Services',
@@ -288,113 +294,119 @@ export const services = [
   { title: 'Managed Services & Support', img: '/img/managed-services.jpg', text: 'Centralized monitoring, remote device management, connectivity services, and SLA-based support.', link: 'Explore Managed Services', icon: steps[4].icon },
 ]
 
+// Outline icons (24x24 stroke paths) shared by the home sections below.
+const icons = {
+  transport: 'M3 6h11v10H3zM14 9h4l3 3v4h-7zM7 19a1.6 1.6 0 100-.01M17 19a1.6 1.6 0 100-.01',
+  shield: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3zM9 12l2 2 4-4',
+  education: 'M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6',
+  city: 'M3 21V9l6-3v15M9 21V4l8 3v14M17 21v-9l4 2v7M3 21h18M12 9h2M12 13h2M12 17h2',
+  phone: 'M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z',
+  solar: 'M4 11h16l-2 6H6zM9.3 11L8.7 17M14.7 11l.6 6M5 14h14M12 17v4M8 21h8M12 3v3M6 5l1.5 1.5M18 5l-1.5 1.5',
+  router: 'M3 14h18v6H3zM7 17h.01M10 17h.01M17 14V9M14.5 6.5a3.5 3.5 0 015 0M12.8 4.6a6 6 0 018.4 0',
+  factory: 'M3 21V10l5 3v-3l5 3v-3l5 3V4h3v17zM3 21h18M7 17h2M11 17h2M15 17h2',
+  handshake: 'M3 11l4-4 3 1 2-2 3 1 6 5M3 11l3 3M21 12l-3 3M8 12l2.5 2.5a1.5 1.5 0 002.1 0L17 10M11 17l1 1M14 16l1 1',
+  badge: 'M12 3l2.2 1.6 2.7-.2.9 2.6 2.2 1.6-.9 2.6.9 2.6-2.2 1.6-.9 2.6-2.7-.2L12 21l-2.2-1.6-2.7.2-.9-2.6L4 15.4l.9-2.6L4 10.2l2.2-1.6.9-2.6 2.7.2zM9 12l2 2 4-4',
+  monitor: 'M3 5h18v11H3zM8 20h8M12 16v4M6 11h3l1.5-3 2 6 1.5-3H18',
+}
+
+// Solutions by Industry (home): 3 x 2 photo cards, each linking to the matching products.
+// Add `img: '/img/...'` with a real installation photo (no QikCell branding); until then the card shows its icon.
 export const industries = [
-  {
-    key: 'Public Safety',
-    icon: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3zM9 12l2 2 4-4',
-    tone: '#dcebff,#f3f8ff',
-    headline: 'Keep emergency communications connected when they matter most.',
-    points: ['Vehicle routers with automatic failover', 'Emergency call boxes and blue-light retrofit', 'Central visibility for command centers'],
-    products: ['RC500', 'ECB1', 'PhoneMDM'],
-  },
-  {
-    key: 'Transportation',
-    icon: 'M3 6h11v10H3zM14 9h4l3 3v4h-7zM7 19a1.6 1.6 0 100-.01M17 19a1.6 1.6 0 100-.01',
-    tone: '#d6f3ee,#f2fbf9',
-    headline: 'Reliable cellular connectivity for fleets and mobile operations.',
-    points: ['Built-in GPS and fleet telemetry', 'Passenger and crew Wi-Fi', 'Vehicle harness and power kits'],
-    products: ['RC500-T', 'GNSS Antennas', 'Vehicle Kit'],
-  },
-  {
-    key: 'Education',
-    icon: 'M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6',
-    tone: '#e4e8ff,#f5f6ff',
-    headline: 'Campus connectivity and public Wi-Fi without trenching new cable.',
-    points: ['Managed outdoor Wi-Fi', 'Cellular voice for legacy phone lines', 'Fast deployment across sites'],
-    products: ['RC500', 'Wi-Fi Antennas', 'TK920'],
-  },
-  {
-    key: 'Smart Cities',
-    icon: 'M3 21V9l6-3v15M9 21V4l8 3v14M17 21v-9l4 2v7M3 21h18M12 9h2M12 13h2M12 17h2',
-    tone: '#d9f0fb,#f2fafe',
-    headline: 'Connect parks, streets and public spaces from virtually anywhere.',
-    points: ['Cameras, sensors and public Wi-Fi', 'Solar and battery power options', 'Fleet-wide remote management'],
-    products: ['RC500', 'Solar Systems', 'PhoneMDM'],
-  },
-  {
-    key: 'Utilities',
-    icon: 'M13 2L4 14h7l-1 8 9-12h-7l1-8z',
-    tone: '#e1ecff,#f4f8ff',
-    headline: 'Bring connectivity where traditional infrastructure is not practical.',
-    points: ['Remote and off-grid sites', 'Outdoor enclosures and UPS', 'Industrial IoT connectivity'],
-    products: ['RC500', 'Outdoor Enclosure', 'Backup UPS'],
-  },
-  {
-    key: 'Enterprise',
-    icon: 'M3 8h18v12H3zM8 8V5h8v3M3 13h18M11 13v2h2v-2',
-    tone: '#dfeaf6,#f4f7fb',
-    headline: 'Business connectivity and device management at scale.',
-    points: ['Dual-WAN failover for every office', 'POTS replacement and UCaaS', 'Zero-touch provisioning'],
-    products: ['RC500', 'TK920', 'PhoneMDM'],
-  },
+  { key: 'Transportation & Fleet', icon: icons.transport, link: 'Explore Transportation', to: '/products#5g-connectivity', text: '5G vehicle routers and multi-band antennas keep paratransit and fleet vehicles connected on every route.' },
+  { key: 'Public Safety', icon: icons.shield, link: 'Explore Public Safety', to: '/products#public-safety', text: 'Emergency phones, call boxes and E911-ready cellular voice for parks, campuses and public spaces.' },
+  { key: 'Education', icon: icons.education, link: 'Explore Education', to: '/products#cellular-voice', text: 'Classroom phone service, campus connectivity and central device management for schools and colleges.' },
+  { key: 'Government & Smart City', icon: icons.city, link: 'Explore Government', to: '/products#5g-connectivity', text: '5G retrofits that bring parking meters, kiosks and municipal equipment online.' },
+  { key: 'Critical Facilities', icon: icons.phone, link: 'Explore POTS Replacement', to: '/products#rcvx3', text: 'POTS replacement for alarm panels, elevators and backup lines as copper service is retired.' },
+  { key: 'Remote & Off-Grid Sites', icon: icons.solar, link: 'Explore Remote Sites', to: '/products#power-outdoor', text: "Solar-powered cellular connectivity and backup power where utility power and wired lines don't reach." },
 ]
 
-// Featured deployments (subject to customer approval before publishing)
+// Why tickIoT (home): 3 x 2 icon grid, no cards.
+export const whyItems = [
+  { title: '20+ years in wireless', icon: icons.router, text: 'Two decades of cellular, 5G and IoT engineering behind every product we ship.' },
+  { title: 'We build our own hardware', icon: icons.factory, text: 'Routers, desk phones, emergency phones and antennas, designed and manufactured by tickIoT.' },
+  { title: 'One partner, end to end', icon: icons.handshake, text: 'Design, integration, installation and managed services from a single team and a single contract.' },
+  // From the certification badges in the product catalog (PTCRB, T-Mobile Network Certified, T-Priority). Confirm before publishing.
+  { title: 'Carrier-certified', icon: icons.badge, text: 'PTCRB-certified hardware, certified on the T-Mobile network, with T-Priority for first responders.' },
+  { title: 'Managed after go-live', icon: icons.monitor, text: 'PhoneMDM remote device management, network monitoring and SLA-based support.' },
+  { title: 'Secure by design', icon: icons.shield, text: 'Hardware, software and cloud built together, with security at every layer.' },
+]
+
+// Proven in the Field (home). Verified numbers only: a stat without a `value` is left out.
+export const proofStats = [
+  { value: null, label: 'devices deployed' },
+  { value: '20+', label: 'years in wireless' },
+  { value: String(customerLogos.length), label: 'agencies and campuses served' }, // organizations in the "Brought internet to" strip
+  { value: null, label: 'network uptime' },
+]
+
+// Featured deployments. Titles stay generic until each customer approves being named.
+// When ready, add `img` (project photo showing tickIoT branding, not QikCell) and `caseStudy` (its page URL).
 export const projects = [
-  { tag: 'Transportation', title: 'Transportation Connectivity', text: '5G vehicle connectivity and fleet communications for paratransit operations.' },
-  { tag: 'Public Safety', title: 'Public Safety', text: 'Cellular emergency communications and POTS replacement for critical infrastructure.' },
-  { tag: 'Government & Education', title: 'Government & Education', text: 'Reliable cellular communications, classroom voice services, and centralized device management.' },
-]
-
-export const capabilities = [
-  { title: 'Hardware Engineering', text: 'Hardware designed and manufactured around real deployment requirements.' },
-  { title: 'Wireless Connectivity', text: '5G, LTE, Wi-Fi, GPS and wireless technologies.' },
-  { title: 'Systems Integration', text: 'Hardware, connectivity, voice and cloud working together as one solution.' },
-  { title: 'Installation & Deployment', text: 'Staging, commissioning and coordinated field deployment for projects of any scale.' },
-  { title: 'Managed Services', text: 'Centralized monitoring, remote device management and analytics.' },
-  { title: 'Support', text: 'SLA-based support from the team that builds and deploys the technology.' },
-]
-
-// Direct sales contact details for the footer. Fill these in; empty values are not shown.
-export const contact = { email: '', phone: '' }
-
-// `to`: a route (optionally with #anchor), or a bare '#id' for a section present on every page. No `to` = no page yet.
-export const footer = [
   {
-    title: 'Products',
-    links: [
-      { label: '5G Routers', to: '/products#5g-connectivity' },
-      { label: 'Cellular Voice', to: '/products#cellular-voice' },
-      { label: 'Public Safety', to: '/products#public-safety' },
-      { label: 'Antennas', to: '/products#antennas' },
-      { label: 'Power & Solar', to: '/products#power-outdoor' },
-      { label: 'PhoneMDM', to: '/products#phonemdm' },
-    ],
+    tag: 'Transportation', title: 'County paratransit fleet', icon: icons.transport,
+    text: 'RC500 5G routers with 9-in-1 mag-mount antennas keep ridership services on time across the county.',
+    products: [{ label: 'RC500', to: '/products#rc500' }, { label: '9-in-1 antennas', to: '/products#qc-antennas' }],
   },
   {
-    title: 'Industries',
-    links: ['Public Safety', 'Education', 'Transportation', 'Smart Cities', 'Utilities', 'Enterprise'].map((label) => ({ label, to: '/#industries' })),
+    tag: 'Public Safety', title: 'City parks', icon: icons.shield,
+    text: 'Solar-powered EVx3 emergency phones with E911 service, installed without new power or phone lines.',
+    products: [{ label: 'Emergency phones', to: '/products#public-safety' }, { label: 'Solar power', to: '/products#solar-terminal' }],
+  },
+  {
+    tag: 'Smart City', title: 'Parking meter retrofit', icon: icons.city,
+    text: 'RC500 5G retrofit brings existing parking meters online without replacing them.',
+    products: [{ label: 'RC500', to: '/products#rc500' }],
+  },
+  {
+    tag: 'Education', title: 'Community college campus', icon: icons.education,
+    text: 'TK920 desk phones and RC500 routers deliver classroom phone service and connectivity.',
+    products: [{ label: 'TK920', to: '/products#desk-phones' }, { label: 'RC500', to: '/products#rc500' }],
+  },
+]
+
+// Footer contact line. Empty values are not shown: fill in the phone numbers, address and LinkedIn URL.
+export const contact = {
+  salesPhone: '',
+  salesEmail: 'sales@tickiot.com',
+  supportUrl: 'https://support.tickiot.com',
+  supportPhone: '',
+  address: '',
+  linkedin: '',
+}
+
+// Footer columns. `to`: a route (optionally with #anchor), or a bare '#id' for a section on every page.
+// `href`: an external site. Neither = no page yet.
+export const footer = [
+  { title: 'Products', links: categories.map((c) => ({ label: c.name, to: c.to })) },
+  {
+    title: 'Solutions',
+    links: [
+      { label: 'Security Cameras & Access Control', to: '/products#camera-system' },
+      { label: 'Connected Campuses', to: '/#industries' },
+      { label: 'Public Safety & Fleet', to: '/products#public-safety' },
+      { label: 'Remote & Solar Sites', to: '/products#power-outdoor' },
+    ],
   },
   {
     title: 'Services',
-    links: ['Hardware Design & Manufacturing', 'Systems Integration', 'Installation & Deployment', 'Managed Services'].map((label) => ({ label, to: '/#services' })),
-  },
-  {
-    title: 'Support',
-    links: [
-      { label: 'Technical Support', to: '#quote' },
-      { label: 'Datasheets', to: '/products' },
-      { label: 'Certifications' },
-      { label: 'PhoneMDM Login' },
-    ],
+    links: ['Hardware Design & Manufacturing', 'Systems Integration', 'Installation & Deployment', 'Managed Services & Support'].map((label) => ({ label, to: '/#services' })),
   },
   {
     title: 'Company',
     links: [
-      { label: 'About', to: '/#why' },
-      { label: 'Partners' },
-      { label: 'OEM / ODM', to: '/#services' },
-      { label: 'Contact', to: '#quote' },
+      { label: 'About Us', to: '/#why' },
+      { label: 'Industries', to: '/#industries' },
+      { label: 'Case Studies', to: '/#proof' },
+      { label: 'Partners & Deal Registration' },
+      { label: 'Contact Us', to: '#quote' },
+    ],
+  },
+  {
+    title: 'Support',
+    links: [
+      { label: 'Support Portal', href: contact.supportUrl },
+      { label: 'PhoneMDM Login' },
+      { label: 'Documentation & Downloads', to: '/products' },
     ],
   },
 ]
