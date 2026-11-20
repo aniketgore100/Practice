@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { nav } from '../data/content'
 import { scrollToHash, setScrollLocked } from '../lib/scroll'
 
 export function Logo() {
   return (
-    <a href="/" className="logo" aria-label="tickIoT home">
+    <Link to="/" className="logo" aria-label="tickIoT home">
       <img src="/logo.png" alt="tickIoT" className="logo__img" />
-    </a>
+    </Link>
   )
 }
 
@@ -30,6 +31,8 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false)
   const [ctaHidden, setCtaHidden] = useState(true)
   const headerRef = useRef(null)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   // Mobile breakpoint
   useEffect(() => {
@@ -40,7 +43,8 @@ export default function Header() {
     return () => mq.removeEventListener('change', apply)
   }, [])
 
-  // Contextual quote button: hidden while the hero, closing CTA or footer is visible
+  // Contextual quote button: hidden while the hero, closing CTA or footer is visible.
+  // Re-queries on route change since each page mounts its own hero/CTA/footer nodes.
   useEffect(() => {
     const els = CTA_SECTIONS.map((s) => document.querySelector(s)).filter(Boolean)
     const visible = new Set()
@@ -50,7 +54,7 @@ export default function Header() {
     }, { rootMargin: '-80px 0px 0px 0px' })
     els.forEach((el) => io.observe(el))
     return () => io.disconnect()
-  }, [])
+  }, [location.pathname])
 
   // Lock page scroll while the mobile menu is open; close on Escape / outside tap
   useEffect(() => {
@@ -75,7 +79,13 @@ export default function Header() {
     setMobile(true)
     show(open ?? 0)
   }
-  const goTo = (item) => { if (item.section) { scrollToHash(`#${item.section}`); close() } }
+  const goTo = (item) => {
+    if (item.route) { navigate(item.route); close(); return }
+    if (!item.section) return
+    if (location.pathname === '/') scrollToHash(`#${item.section}`)
+    else navigate(`/#${item.section}`)
+    close()
+  }
 
   const menu = nav[shown]
   const active = menu?.items[sub]
@@ -115,23 +125,49 @@ export default function Header() {
           <div className={`mega ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
             <div className="container mega__inner">
               <ul className="mega__list">
-                {isMobile && menu.section && (
+                {isMobile && (menu.route || menu.section) && (
                   <li>
-                    <a href={`#${menu.section}`} className="mega__row mega__row--go" onClick={close}>Go to {menu.label}</a>
+                    {menu.route ? (
+                      <Link to={menu.route} className="mega__row mega__row--go" onClick={close}>Go to {menu.label}</Link>
+                    ) : (
+                      <Link to={`/#${menu.section}`} className="mega__row mega__row--go" onClick={close}>Go to {menu.label}</Link>
+                    )}
                   </li>
                 )}
                 {menu.items.map((it, n) => (
                   <li key={it.label}>
-                    <a
-                      href="#"
-                      className={`mega__row ${n === sub ? 'is-active' : ''}`}
-                      onMouseEnter={() => { if (!isMobile) setSub(n) }}
-                      onFocus={() => setSub(n)}
-                      onClick={(e) => { if (it.links) { e.preventDefault(); setSub(n) } else close() }}
-                    >
-                      <span>{it.label}</span>
-                      {it.links && <Chevron />}
-                    </a>
+                    {it.links ? (
+                      <a
+                        href="#"
+                        className={`mega__row ${n === sub ? 'is-active' : ''}`}
+                        onMouseEnter={() => { if (!isMobile) setSub(n) }}
+                        onFocus={() => setSub(n)}
+                        onClick={(e) => { e.preventDefault(); setSub(n) }}
+                      >
+                        <span>{it.label}</span>
+                        <Chevron />
+                      </a>
+                    ) : it.to ? (
+                      <Link
+                        to={it.to}
+                        className={`mega__row ${n === sub ? 'is-active' : ''}`}
+                        onMouseEnter={() => { if (!isMobile) setSub(n) }}
+                        onFocus={() => setSub(n)}
+                        onClick={close}
+                      >
+                        <span>{it.label}</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href="#"
+                        className={`mega__row ${n === sub ? 'is-active' : ''}`}
+                        onMouseEnter={() => { if (!isMobile) setSub(n) }}
+                        onFocus={() => setSub(n)}
+                        onClick={(e) => { e.preventDefault(); close() }}
+                      >
+                        <span>{it.label}</span>
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -141,7 +177,11 @@ export default function Header() {
                   <ul>
                     {active.links.map((l) => (
                       <li key={l.label}>
-                        <a href="#" onClick={close}>{l.label}{l.ext && <External />}</a>
+                        {l.to ? (
+                          <Link to={l.to} onClick={close}>{l.label}{l.ext && <External />}</Link>
+                        ) : (
+                          <a href="#" onClick={close}>{l.label}{l.ext && <External />}</a>
+                        )}
                       </li>
                     ))}
                   </ul>

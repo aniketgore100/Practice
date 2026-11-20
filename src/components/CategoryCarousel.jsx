@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { categories } from '../data/content'
 
 const Arrow = () => (
@@ -15,7 +16,7 @@ export default function CategoryCarousel() {
         </div>
         <div className="prod__grid">
           {categories.map((c) => (
-            <a key={c.name} href="#" className="prod__card">
+            <Link key={c.name} to={c.to} className="prod__card">
               <div className="prod__media"><img src={c.img} alt={c.name} loading="lazy" /></div>
               <div className="prod__body">
                 <h3>{c.name}</h3>
@@ -24,7 +25,7 @@ export default function CategoryCarousel() {
                   <span className="prod__link">View Products <Arrow /></span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

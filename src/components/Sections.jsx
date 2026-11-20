@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { steps, services, industries, projects, capabilities, footer, contact, customerLogos } from '../data/content'
 import { Logo } from './Header'
 
@@ -188,7 +189,15 @@ export function Footer() {
         {footer.map((c) => (
           <div key={c.title}>
             <h4>{c.title}</h4>
-            <ul>{c.links.map((l) => <li key={l}><a href="#">{l}</a></li>)}</ul>
+            <ul>
+              {c.links.map((l) => (
+                <li key={l.label}>
+                  {!l.to ? <a href="#">{l.label}</a>
+                    : l.to.startsWith('#') ? <a href={l.to}>{l.label}</a>
+                    : <Link to={l.to}>{l.label}</Link>}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
