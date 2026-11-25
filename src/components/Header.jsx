@@ -51,7 +51,7 @@ export default function Header() {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)))
       setCtaHidden(visible.size > 0)
-    }, { rootMargin: '-80px 0px 0px 0px' })
+    }, { rootMargin: '-64px 0px 0px 0px' })
     els.forEach((el) => io.observe(el))
     return () => io.disconnect()
   }, [location.pathname])

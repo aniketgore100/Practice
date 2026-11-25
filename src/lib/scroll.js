@@ -1,4 +1,4 @@
-const HEADER_HEIGHT = 72
+const HEADER_HEIGHT = 56 // matches --header-h in index.css
 
 // Looks up by id rather than querySelector, so ids like "5g-connectivity" (not valid CSS selectors) work.
 const byHash = (hash) => document.getElementById(decodeURIComponent(hash.slice(1)))

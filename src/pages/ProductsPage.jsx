@@ -217,7 +217,7 @@ export default function ProductsPage() {
   useEffect(() => {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) setCurrent(e.target.id) })
-    }, { rootMargin: '-140px 0px -55% 0px' })
+    }, { rootMargin: '-128px 0px -55% 0px' })
     productCategories.forEach((c) => {
       const el = document.getElementById(c.slug)
       if (el) io.observe(el)
