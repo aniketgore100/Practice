@@ -190,10 +190,10 @@ export default function Header() {
             </div>
           </div>
 
-          <a href="#quote" className="btn btn--primary header__mobile-cta" onClick={close}>Request a Quote</a>
+          <a href="#quote" className="btn btn--primary header__mobile-cta" onClick={close}>Talk to an Expert</a>
         </div>
 
-        <a href="#quote" className={`btn btn--primary header__cta ${ctaHidden ? 'is-hidden' : ''}`} tabIndex={ctaHidden ? -1 : 0}>Request a Quote</a>
+        <a href="#quote" className={`btn btn--primary header__cta ${ctaHidden ? 'is-hidden' : ''}`} tabIndex={ctaHidden ? -1 : 0}>Talk to an Expert</a>
         <button className={`burger ${mobile ? 'is-open' : ''}`} aria-label="Menu" aria-expanded={mobile} onClick={toggleMobile}>
           <span /><span /><span />
         </button>

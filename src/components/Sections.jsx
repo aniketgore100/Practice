@@ -175,8 +175,7 @@ export function CTA() {
       <div className="container cta__inner">
         <h2>Whether you need a single device, a customized hardware platform, or a fully managed deployment, tickIoT can help.</h2>
         <div className="hero__actions hero__actions--center">
-          <a href="#" className="btn btn--primary btn--lg">Request a Quote</a>
-          <a href="#" className="btn btn--ghost btn--lg">Talk to an Expert</a>
+          <a href="#" className="btn btn--primary btn--lg">Talk to an Expert</a>
         </div>
       </div>
     </section>
@@ -214,8 +213,7 @@ export function Footer() {
             <p>Connected Hardware. Integrated Solutions. Built for Deployment.</p>
           </div>
           <div className="footer__ctas">
-            <a href="#quote" className="btn btn--primary">Request a Quote</a>
-            <a href="#quote" className="btn btn--glass">Talk to an Expert</a>
+            <a href="#quote" className="btn btn--primary">Talk to an Expert</a>
           </div>
         </div>
 

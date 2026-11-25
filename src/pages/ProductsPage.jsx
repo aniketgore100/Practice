@@ -60,7 +60,7 @@ function CategoryCarousel({ onSelect }) {
               <p className="pslider__list"><b>{items.length} products:</b> {items.map((p) => p.name).join(' · ')}</p>
               <div className="hero__actions">
                 <a href={`#${c.slug}`} className="btn btn--primary btn--lg" onClick={(e) => { e.preventDefault(); onSelect(c.slug) }}>Explore {c.label}</a>
-                <a href="#quote" className="btn btn--glass btn--lg">Request a Quote</a>
+                <a href="#quote" className="btn btn--glass btn--lg">Talk to an Expert</a>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ function CategoryCarousel({ onSelect }) {
   )
 }
 
-// Compact spec-sheet tile: image, name and three key specs. The whole tile toggles the details panel.
+// Product card: inset image, name and a one-line summary. The whole card toggles the details panel.
 function ProductTile({ p, open, onToggle }) {
   return (
     <article className={`ptile ${open ? 'is-open' : ''}`} id={p.id}>
@@ -88,19 +88,13 @@ function ProductTile({ p, open, onToggle }) {
       >
         <span className="ptile__media">
           {p.img ? <img src={p.img} alt="" loading="lazy" /> : <Icon d={p.icon} size={64} />}
-          <span className="tag ptile__tag">{p.tag}</span>
+        </span>
+        <span className="ptile__name">{p.name}</span>
+        <span className="ptile__summary">{p.summary}</span>
+        <span className="ptile__more">
+          {open ? 'Hide details' : 'View details'}
           <span className="ptile__toggle" aria-hidden="true"><Plus /></span>
         </span>
-        <span className="ptile__head">
-          <span className="ptile__tagline">{p.tagline}</span>
-          <span className="ptile__name">{p.name}</span>
-        </span>
-        <span className="ptile__specs">
-          {p.specs.map(([value, label]) => (
-            <span key={label} className="ptile__spec"><b>{value}</b><small>{label}</small></span>
-          ))}
-        </span>
-        <span className="sr-only">{open ? 'Hide details' : 'Show details'}</span>
       </button>
     </article>
   )
@@ -120,7 +114,12 @@ function ProductDetails({ p, onClose }) {
 
       <div className="pdetail__body">
         <p className="eyebrow">{p.tagline}</p>
-        <h3 id={`${p.id}-title`}>{p.name}</h3>
+        <h3 id={`${p.id}-title`}>{p.name} <span className="tag">{p.tag}</span></h3>
+        <dl className="pdetail__specs">
+          {p.specs.map(([value, label]) => (
+            <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+          ))}
+        </dl>
         <p className="pdetail__text">{p.text}</p>
         <ul className="pdetail__features">
           {p.features.map((f) => <li key={f}>{f}</li>)}
@@ -133,8 +132,7 @@ function ProductDetails({ p, onClose }) {
           </dl>
         )}
         <div className="pdetail__actions">
-          <a href="#quote" className="btn btn--primary">Request a Quote</a>
-          <a href="#quote" className="btn btn--ghost">Talk to an Expert</a>
+          <a href="#quote" className="btn btn--primary">Talk to an Expert</a>
         </div>
       </div>
 
@@ -171,30 +169,70 @@ function ProductDetails({ p, onClose }) {
   )
 }
 
+// Sticky category sidebar: jumps to a category and highlights the one being scrolled through.
+// On narrow screens it becomes a sticky horizontal strip that keeps the current item in view.
+function CategoryNav({ current, onJump }) {
+  const listRef = useRef(null)
+
+  useEffect(() => {
+    const list = listRef.current
+    const link = list?.querySelector('.is-active')
+    if (!link || list.scrollWidth <= list.clientWidth) return
+    list.scrollTo({ left: link.offsetLeft - 16, behavior: reduceMotion() ? 'auto' : 'smooth' })
+  }, [current])
+
+  return (
+    <aside className="pnav">
+      <nav aria-label="Product categories">
+        <p className="pnav__title">Categories</p>
+        <ul ref={listRef}>
+          {productCategories.map((c) => (
+            <li key={c.slug}>
+              <a
+                href={`#${c.slug}`}
+                className={current === c.slug ? 'is-active' : ''}
+                aria-current={current === c.slug ? 'location' : undefined}
+                onClick={(e) => { e.preventDefault(); onJump(c.slug) }}
+              >
+                <span>{c.label}</span>
+                <span className="pnav__count">{products.filter((p) => p.category === c.slug).length}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  )
+}
+
 export default function ProductsPage() {
   const location = useLocation()
-  const [active, setActive] = useState('all')
+  const [current, setCurrent] = useState(productCategories[0].slug)
   const [openId, setOpenId] = useState(null)
-  // A fresh object per request, so asking for the same target twice still scrolls.
-  // Set alongside any filter change, so the scroll runs after the target section has rendered.
-  const [scrollReq, setScrollReq] = useState(null)
   const revealPanel = useRef(false)
 
-  useEffect(() => { if (scrollReq) scrollToHash(`#${scrollReq.id}`) }, [scrollReq])
+  const jump = (slug) => scrollToHash(`#${slug}`)
 
-  const select = (slug) => { setActive(slug); setScrollReq({ id: slug }) }
+  // Scrollspy: the category whose section crosses a band near the top of the viewport is "current".
+  useEffect(() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) setCurrent(e.target.id) })
+    }, { rootMargin: '-140px 0px -55% 0px' })
+    productCategories.forEach((c) => {
+      const el = document.getElementById(c.slug)
+      if (el) io.observe(el)
+    })
+    return () => io.disconnect()
+  }, [])
 
-  // Deep links (/products#rc500, footer and nav links): widen the filter if it hides the target,
-  // open the product's details, then scroll. Keyed on location.key so re-clicking the same link works.
+  // Deep links (/products#rc500, footer and nav links): open the product's details, then scroll.
+  // Keyed on location.key so re-clicking the same link works.
   useEffect(() => {
     const id = decodeURIComponent(location.hash.slice(1))
     if (!id) return
-    const product = products.find((p) => p.id === id)
-    const category = product ? product.category : productCategories.find((c) => c.slug === id)?.slug
     // oxlint-disable-next-line react/set-state-in-effect -- syncing page state from the router's URL hash
-    setActive((cur) => (cur === 'all' || cur === category ? cur : 'all'))
-    if (product) setOpenId(id)
-    setScrollReq({ id })
+    if (products.some((p) => p.id === id)) setOpenId(id)
+    scrollToHash(`#${id}`)
   }, [location.key, location.hash])
 
   const toggle = (id) => {
@@ -221,40 +259,32 @@ export default function ProductsPage() {
     return () => document.removeEventListener('keydown', onKey)
   })
 
-  const visibleCategories = productCategories.filter((c) => active === 'all' || active === c.slug)
-
   return (
     <>
-      <CategoryCarousel onSelect={select} />
+      <CategoryCarousel onSelect={jump} />
 
-      <nav className="cat-tabs" aria-label="Filter products by category">
-        <div className="container cat-tabs__row">
-          <a href="#" className={active === 'all' ? 'is-active' : ''} onClick={(e) => { e.preventDefault(); setActive('all') }}>All products</a>
+      <div className="container plist">
+        <CategoryNav current={current} onJump={jump} />
+        <div className="plist__main">
           {productCategories.map((c) => (
-            <a key={c.slug} href={`#${c.slug}`} className={active === c.slug ? 'is-active' : ''} onClick={(e) => { e.preventDefault(); select(c.slug) }}>{c.label}</a>
+            <section key={c.slug} className="pcat" id={c.slug}>
+              <div className="pcat__head">
+                <h2>{c.label}</h2>
+                <p>{c.blurb}</p>
+              </div>
+              <div className="ptile__grid">
+                {products.filter((p) => p.category === c.slug).flatMap((p) => {
+                  const open = openId === p.id
+                  const tile = <ProductTile key={p.id} p={p} open={open} onToggle={() => toggle(p.id)} />
+                  return open ? [tile, <ProductDetails key={`${p.id}-details`} p={p} onClose={close} />] : [tile]
+                })}
+              </div>
+            </section>
           ))}
         </div>
-      </nav>
+      </div>
 
-      {visibleCategories.map((c) => (
-        <section key={c.slug} className="pcat" id={c.slug}>
-          <div className="container">
-            <div className="pcat__head">
-              <h2>{c.label}</h2>
-              <p>{c.blurb}</p>
-            </div>
-            <div className="ptile__grid">
-              {products.filter((p) => p.category === c.slug).flatMap((p) => {
-                const open = openId === p.id
-                const tile = <ProductTile key={p.id} p={p} open={open} onToggle={() => toggle(p.id)} />
-                return open ? [tile, <ProductDetails key={`${p.id}-details`} p={p} onClose={close} />] : [tile]
-              })}
-            </div>
-          </div>
-        </section>
-      ))}
-
-      <section className="pcat" id="custom">
+      <section className="pcat pcat--custom" id="custom">
         <div className="container pcat__head pcat__head--center">
           <p className="eyebrow">Custom Products</p>
           <h2>Don&rsquo;t see the exact fit? We design it.</h2>

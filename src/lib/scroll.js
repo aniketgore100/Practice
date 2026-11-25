@@ -1,4 +1,4 @@
-const HEADER_OFFSET = -72
+const HEADER_HEIGHT = 72
 
 // Looks up by id rather than querySelector, so ids like "5g-connectivity" (not valid CSS selectors) work.
 const byHash = (hash) => document.getElementById(decodeURIComponent(hash.slice(1)))
@@ -18,10 +18,13 @@ export function initScroll() {
   return () => document.removeEventListener('click', onClick)
 }
 
+// Lands the target just below the fixed header, or below its CSS scroll-margin-top when it sets one
+// (e.g. product sections, which also clear the sticky category strip on small screens).
 export function scrollToHash(hash) {
   const el = byHash(hash)
   if (!el) return
-  const top = el.getBoundingClientRect().top + window.scrollY + HEADER_OFFSET
+  const offset = parseFloat(getComputedStyle(el).scrollMarginTop) || HEADER_HEIGHT
+  const top = el.getBoundingClientRect().top + window.scrollY - offset
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' })
 }

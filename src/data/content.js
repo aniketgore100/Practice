@@ -82,6 +82,7 @@ export const products = [
   // 5G Connectivity
   {
     id: 'rc500', category: '5g-connectivity', tag: 'Flagship', name: 'RC500', tagline: '5G Router',
+    summary: 'The flagship enterprise 5G router for fixed sites and vehicles, with dual-SIM failover and Wi-Fi 6.',
     specs: [['5G', 'Network'], ['Dual-SIM', 'Failover'], ['WiFi 6', 'Wireless']],
     img: '/img/routers.jpg',
     text: 'Cost-effective, enterprise-grade performance for fixed and in-vehicle deployments. Unmatched bandwidth, ultra-low latency and seamless failover keep operations connected anywhere.',
@@ -93,6 +94,7 @@ export const products = [
   },
   {
     id: 'rc500-outdoor', category: '5g-connectivity', tag: 'Rugged', name: 'RC500 Outdoor Enclosure', tagline: '5G Solution',
+    summary: 'An IP66 outdoor enclosure that takes the RC500 anywhere, with 15+ mile antennas and PoE for cameras.',
     specs: [['IP66', 'Rated'], ['15+ mi', 'Range'], ['2× PoE', 'Ports']],
     img: '/img/solar.jpg',
     text: 'Turns the RC500 or RC500-T into a fully outdoor-capable system with high-gain antennas reaching sites over 15 miles away, dual PoE ports for security cameras, and solar power for off-grid sites.',
@@ -104,6 +106,7 @@ export const products = [
   },
   {
     id: 'rc500-t', category: '5g-connectivity', tag: '5G', name: 'RC500-T', tagline: '5G Data Terminal',
+    summary: 'A compact 5G data terminal with 2.5GbE and USB 3.1, for fast broadband without a full router.',
     specs: [['5G', 'Network'], ['2.5GbE', 'Ethernet'], ['USB 3.1', 'Interface']],
     img: '/img/routers.jpg',
     text: 'A compact, high-performance 5G data terminal with 2.5GbE Ethernet and USB 3.1 for fixed, mobile and remote connectivity, without the complexity of a traditional router.',
@@ -116,6 +119,7 @@ export const products = [
   // Cellular Voice
   {
     id: 'desk-phones', category: 'cellular-voice', tag: 'Cellular Voice', name: 'Cellular Desk Phones', tagline: 'TK920 · TK920+ · TK100',
+    summary: 'Cellular desk phones that deliver dial tone without copper, from single desks to multi-line offices.',
     specs: [['6–32', 'SIP accounts'], ['HD', 'Voice'], ['3', 'Models']],
     img: '/img/deskphone.jpg',
     text: 'A family of cellular desk phones that deliver dial tone over the cellular network instead of copper, scaled from single desks to multi-line offices.',
@@ -124,6 +128,7 @@ export const products = [
   },
   {
     id: 'rcvx3', category: 'cellular-voice', tag: 'POTS Replacement', name: 'RCVx3', tagline: 'Cellular ATA Router',
+    summary: 'A cellular ATA that replaces POTS lines for alarms, elevators, fax and phones, with E911 alerts.',
     specs: [['2× FXS', 'RJ11 ports'], ['E911', 'Alerts'], ['2-day', 'Backup']],
     img: '/img/deskphone.jpg',
     text: 'Replaces traditional POTS lines with dependable cellular voice. Two FXS/RJ11 ports, automatic failover and E911 notification keep alarms, elevators, fax lines and phones online.',
@@ -136,6 +141,7 @@ export const products = [
   // Public Safety
   {
     id: 'ecb1', category: 'public-safety', tag: 'Public Safety', name: 'ECB1', tagline: '5G Emergency Call Box',
+    summary: 'A push-button 5G emergency call box with T-Priority, powered by AC, solar or PoE.',
     specs: [['5G', 'T-Priority'], ['IP67', 'Rated'], ['AC/Solar/PoE', 'Power']],
     img: '/img/emergency-box.jpg',
     text: 'A durable push-button emergency call box built on the RC500 5G router with T-Priority network access. One push connects to emergency services from schools, parks, highways and transit sites.',
@@ -144,6 +150,7 @@ export const products = [
   },
   {
     id: 'blue-light-retrofit', category: 'public-safety', tag: 'Retrofit', name: 'Blue-Light POTS Retrofit Kit', tagline: 'Emergency Call Box Upgrade',
+    summary: 'Upgrades existing blue-light towers and call boxes from copper to 4G/5G without replacing the tower.',
     specs: [['4G/5G', 'Upgrade'], ['Solar', 'Ready'], ['Keep', 'Your tower']],
     img: '/img/emergency-box.jpg',
     text: 'Upgrades existing blue-light towers and call boxes from POTS to 4G/5G connectivity. Add solar power, backup battery, and camera or sensor integrations without replacing the tower.',
@@ -152,6 +159,7 @@ export const products = [
   },
   {
     id: 'drone-first-response', category: 'public-safety', tag: 'New', name: 'Drone First Response', tagline: '5G Connected Drone Dock',
+    summary: 'An always-connected, solar-backed drone dock that stays mission-ready even when site internet fails.',
     specs: [['5G', 'T-Priority'], ['Solar', 'Backup'], ['Live', 'Telemetry']],
     icon: 'M12 5v4M12 15v4M5 12h4M15 12h4M8 8L5 5M16 8l3-3M8 16l-3 3M16 16l3 3',
     text: 'A solar-backed, always-connected drone dock for first-response teams. Dedicated 5G keeps takeoff, landing and live telemetry online even if site internet fails.',
@@ -160,6 +168,7 @@ export const products = [
   // Antennas
   {
     id: 'qc-antennas', category: 'antennas', tag: '5G / GNSS', name: 'External Antennas (QC Series)', tagline: 'Precision antennas for every frequency',
+    summary: 'Five 5G, Wi-Fi 6E/7 and GNSS antenna models for vehicles and fixed sites, in every mounting style.',
     specs: [['5', 'Models'], ['9-in-1', 'Max elements'], ['WiFi 7', 'Ready']],
     img: '/img/antenna.jpg',
     text: 'High-quality antennas covering Cellular, WiFi, GPS, LoRa, BLE and RFID frequencies, in mounting styles from adhesive glass-mount to magnetic and screw-mount.',
@@ -175,6 +184,7 @@ export const products = [
   },
   {
     id: 'sector-wifi-antenna', category: 'antennas', tag: 'WiFi 6', name: 'Sector WiFi Antenna', tagline: 'Indoor / Outdoor',
+    summary: 'A directional 4x4 MIMO Wi-Fi 6 antenna for focused coverage across parks, campuses and rural sites.',
     specs: [['11–14 dB', 'Gain'], ['4×4', 'MIMO'], ['IP65', 'Rated']],
     img: '/img/antenna.jpg',
     text: 'Directional 4x4 MIMO WiFi 6 antenna for focused outdoor coverage across parks, campuses and rural sites.',
@@ -182,6 +192,7 @@ export const products = [
   },
   {
     id: 'omni-wifi-antenna', category: 'antennas', tag: 'WiFi 6', name: 'Omni WiFi Antenna', tagline: 'Indoor / Outdoor',
+    summary: 'An omni-directional 4x4 MIMO Wi-Fi 6 antenna for 360° coverage indoors and out.',
     specs: [['8–12 dB', 'Gain'], ['360°', 'Coverage'], ['IP65', 'Rated']],
     img: '/img/antenna.jpg',
     text: 'Omni-directional 4x4 MIMO WiFi 6 antenna delivering 360° coverage for indoor spaces and rural deployments.',
@@ -190,6 +201,7 @@ export const products = [
   // Power & Outdoor
   {
     id: 'solar-terminal', category: 'power-outdoor', tag: 'Solar', name: 'Solar Terminal', tagline: 'ST-Series Solar Power System',
+    summary: 'Plug-and-play LiFePO₄ solar power from 20Ah to 240Ah, with 12V and 48V outputs.',
     specs: [['20–240Ah', 'Capacity'], ['LiFePO₄', 'Chemistry'], ['12/48V', 'Output']],
     img: '/img/solar.jpg',
     text: 'Plug-and-play solar battery terminals from 20Ah to 240Ah with LiFePO₄ chemistry, real-time battery management, and 12V/48V outputs for any off-grid 5G or IoT deployment.',
@@ -198,6 +210,7 @@ export const products = [
   },
   {
     id: 'solar-wifi-system', category: 'power-outdoor', tag: 'All-in-One', name: '5G Solar WiFi System', tagline: 'Self-Contained Outdoor WiFi',
+    summary: 'Solar, battery, 5G and Wi-Fi in one pole-mounted system for public Wi-Fi off the grid.',
     specs: [['Off-grid', 'Power'], ['5G', 'Backhaul'], ['All-in-one', 'Install']],
     img: '/img/solar.jpg',
     text: "A self-contained solar, battery, 5G cellular and WiFi system for public WiFi coverage anywhere grid power and internet aren't available.",
@@ -205,6 +218,7 @@ export const products = [
   },
   {
     id: 'public-wifi-system', category: 'power-outdoor', tag: 'WiFi 6', name: '5G Public WiFi System', tagline: 'Powered Public Spaces',
+    summary: 'Wi-Fi 6 for parks and public spaces, up to 300 users with splash pages and content filtering.',
     specs: [['3000', 'Mbps peak'], ['300', 'Users'], ['WiFi 6', '802.11ax']],
     img: '/img/solar.jpg',
     text: 'A mains or solar-powered WiFi 6 access point delivering up to 3000Mbps and supporting 150–300 concurrent users, with splash-page and content filtering built in.',
@@ -212,6 +226,7 @@ export const products = [
   },
   {
     id: 'solar-camera-system', category: 'power-outdoor', tag: 'Surveillance', name: '5G Solar Camera System', tagline: 'Remote Video Surveillance',
+    summary: 'A solar-powered 5G camera kit for remote video surveillance with no local power or internet.',
     specs: [['Solar', 'Powered'], ['5G', 'Uplink'], ['PoE', 'Camera']],
     img: '/img/solar.jpg',
     text: 'An all-in-one outdoor surveillance kit — solar, battery, 5G cellular and PoE — for rapid remote camera deployment with no local power or internet required.',
@@ -219,6 +234,7 @@ export const products = [
   },
   {
     id: 'camera-system', category: 'power-outdoor', tag: 'Surveillance', name: '5G Camera System', tagline: 'Rapid Deployment Security',
+    summary: 'A rugged 5G camera enclosure for dome, PTZ or bullet cameras, powered by PoE or AC.',
     specs: [['3', 'Camera types'], ['5G', 'Uplink'], ['PoE/AC', 'Power']],
     img: '/img/emergency-box.jpg',
     text: 'A rugged 5G-connected camera enclosure supporting dome, PTZ and bullet cameras, powered by PoE or AC, for security anywhere.',
@@ -226,6 +242,7 @@ export const products = [
   },
   {
     id: 'bt11', category: 'power-outdoor', tag: 'Accessory', name: 'BT11', tagline: 'Backup Battery',
+    summary: 'A two-day backup battery that keeps routers and voice gateways online through power cuts.',
     specs: [['2-day', 'Runtime'], ['Plug & play', 'Setup'], ['RC500/RCVx3', 'Pairs with']],
     icon: 'M3 7h14v10H3zM17 10h2v4h-2zM6 10h2v4H6zM10 10h2v4h-2z',
     text: 'A two-day backup battery accessory that keeps routers and voice gateways online through short power interruptions.',
@@ -234,6 +251,7 @@ export const products = [
   // Software
   {
     id: 'phonemdm', category: 'software', tag: 'Platform', name: 'PhoneMDM', tagline: 'Mobile Device Management Platform',
+    summary: 'Cloud management for every device you deploy: zero-touch setup, health monitoring and alerts.',
     specs: [['Zero-touch', 'Provisioning'], ['From $24', 'Per device/yr'], ['30-day', 'Free trial']],
     icon: 'M3 5h18v11H3zM8 20h8M12 16v4',
     text: 'A complete, secure edge-to-cloud device management platform — zero-touch provisioning, fleet analytics, health monitoring and alerts for every connected device you deploy.',
