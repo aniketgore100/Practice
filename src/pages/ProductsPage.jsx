@@ -1,82 +1,48 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { scrollToHash } from '../lib/scroll'
-import { productCategories, products } from '../data/content'
+import { productCategories, products, productPages } from '../data/content'
 import { CTA } from '../components/Sections'
 
 const Icon = ({ d, size = 48 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
 )
-const Caret = ({ dir }) => (
-  <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d={dir === 'prev' ? 'M10 3L5 8l5 5' : 'M6 3l5 5-5 5'} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-)
 const Plus = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
 )
+const Arrow = () => (
+  <svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+)
 
-const SLIDE_MS = 6000
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-function CategoryCarousel({ onSelect }) {
-  const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const count = productCategories.length
-  const go = (n) => setIndex((n + count) % count)
-
-  useEffect(() => {
-    if (paused || reduceMotion()) return
-    const t = setTimeout(() => setIndex((i) => (i + 1) % count), SLIDE_MS)
-    return () => clearTimeout(t)
-  }, [index, paused, count])
-
-  return (
-    <section
-      className="pslider"
-      aria-roledescription="carousel"
-      aria-label="Product categories"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false) }}
-    >
-      <h1 className="sr-only">Products</h1>
-      {productCategories.map((c, n) => {
-        const items = products.filter((p) => p.category === c.slug)
-        return (
-          <div
-            key={c.slug}
-            className={`pslider__slide ${n === index ? 'is-active' : ''}`}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${n + 1} of ${count}: ${c.label}`}
-            inert={n !== index}
-          >
-            <img className="pslider__img" src={c.img} alt="" loading={n === 0 ? 'eager' : 'lazy'} />
-            <div className="pslider__shade" aria-hidden="true" />
-            <div className="container pslider__content">
-              <p className="eyebrow">{String(n + 1).padStart(2, '0')} · {c.label}</p>
-              <h2>{c.headline}</h2>
-              <p className="pslider__blurb">{c.blurb}</p>
-              <p className="pslider__list"><b>{items.length} products:</b> {items.map((p) => p.name).join(' · ')}</p>
-              <div className="hero__actions">
-                <a href={`#${c.slug}`} className="btn btn--primary btn--lg" onClick={(e) => { e.preventDefault(); onSelect(c.slug) }}>Explore {c.label}</a>
-                <a href="#quote" className="btn btn--glass btn--lg">Talk to an Expert</a>
-              </div>
-            </div>
-          </div>
-        )
-      })}
-
-      <div className="container pslider__controls">
-        <button className="pslider__arrow" aria-label="Previous category" onClick={() => go(index - 1)}><Caret dir="prev" /></button>
-        <button className="pslider__arrow" aria-label="Next category" onClick={() => go(index + 1)}><Caret dir="next" /></button>
-      </div>
-    </section>
-  )
-}
-
-// Product card: inset image, name and a one-line summary. The whole card toggles the details panel.
+// Product card: inset image, name and a one-line summary. A product with its own page links straight
+// to it; any other card toggles the details panel under its row.
 function ProductTile({ p, open, onToggle }) {
+  const content = (
+    <>
+      <span className={`ptile__media ${p.imgFit === 'contain' ? 'is-contain' : ''}`}>
+        {p.img ? <img src={p.img} alt="" loading="lazy" /> : <Icon d={p.icon} size={64} />}
+      </span>
+      <span className="ptile__name">{p.name}</span>
+      <span className="ptile__summary">{p.summary}</span>
+    </>
+  )
+
+  if (productPages[p.id]) {
+    return (
+      <article className="ptile" id={p.id}>
+        <Link to={`/products/${p.id}`} className="ptile__hit">
+          {content}
+          <span className="ptile__more">
+            View details
+            <span className="ptile__toggle" aria-hidden="true"><Arrow /></span>
+          </span>
+        </Link>
+      </article>
+    )
+  }
+
   return (
     <article className={`ptile ${open ? 'is-open' : ''}`} id={p.id}>
       <button
@@ -86,11 +52,7 @@ function ProductTile({ p, open, onToggle }) {
         aria-controls={`${p.id}-details`}
         onClick={onToggle}
       >
-        <span className="ptile__media">
-          {p.img ? <img src={p.img} alt="" loading="lazy" /> : <Icon d={p.icon} size={64} />}
-        </span>
-        <span className="ptile__name">{p.name}</span>
-        <span className="ptile__summary">{p.summary}</span>
+        {content}
         <span className="ptile__more">
           {open ? 'Hide details' : 'View details'}
           <span className="ptile__toggle" aria-hidden="true"><Plus /></span>
@@ -108,7 +70,7 @@ function ProductDetails({ p, onClose }) {
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
       </button>
 
-      <div className="pdetail__media">
+      <div className={`pdetail__media ${p.imgFit === 'contain' ? 'is-contain' : ''}`}>
         {p.img ? <img src={p.img} alt={p.name} loading="lazy" /> : <Icon d={p.icon} size={96} />}
       </div>
 
@@ -132,8 +94,7 @@ function ProductDetails({ p, onClose }) {
           </dl>
         )}
         <div className="pdetail__actions">
-          <a href="#quote" className="btn btn--primary">Talk to an Expert</a>
-        </div>
+          <a href="#quote" className="btn btn--primary">Talk to an Expert</a>        </div>
       </div>
 
       {p.specTable && (
@@ -231,7 +192,7 @@ export default function ProductsPage() {
     const id = decodeURIComponent(location.hash.slice(1))
     if (!id) return
     // oxlint-disable-next-line react/set-state-in-effect -- syncing page state from the router's URL hash
-    if (products.some((p) => p.id === id)) setOpenId(id)
+    if (products.some((p) => p.id === id) && !productPages[id]) setOpenId(id)
     scrollToHash(`#${id}`)
   }, [location.key, location.hash])
 
@@ -261,7 +222,7 @@ export default function ProductsPage() {
 
   return (
     <>
-      <CategoryCarousel onSelect={jump} />
+      <h1 className="sr-only">Products</h1>
 
       <div className="container plist">
         <CategoryNav current={current} onJump={jump} />

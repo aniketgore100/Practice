@@ -4,6 +4,7 @@ import { initScroll } from './lib/scroll'
 import Header from './components/Header'
 import Home from './pages/Home'
 import ProductsPage from './pages/ProductsPage'
+import ProductDetail from './pages/ProductDetail'
 import { Footer } from './components/Sections'
 
 // Clicked links open their page at the top (the router keeps the old scroll position otherwise).
@@ -28,6 +29,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
         </Routes>
       </main>
       <Footer />

@@ -16,7 +16,7 @@ export const nav = [
     route: '/products',
     items: [
       { label: 'All products', to: '/products' },
-      { label: '5G Connectivity', links: [{ label: 'RC500', to: '/products#rc500' }, { label: 'RC500-T', to: '/products#rc500-t' }, { label: 'RedCap Modems', to: '/products#5g-connectivity' }, { label: 'Gateways', to: '/products#5g-connectivity' }] },
+      { label: '5G Connectivity', links: [{ label: 'RC500', to: '/products/rc500' }, { label: 'RC500-T', to: '/products#rc500-t' }, { label: 'RedCap Modems', to: '/products#5g-connectivity' }, { label: 'Gateways', to: '/products#5g-connectivity' }] },
       { label: 'Cellular Voice', links: [{ label: 'TK920', to: '/products#desk-phones' }, { label: 'TK920+', to: '/products#desk-phones' }, { label: 'TK100', to: '/products#desk-phones' }, { label: 'VH300', to: '/products#desk-phones' }, { label: 'RCVx3', to: '/products#rcvx3' }, { label: 'POTS Gateways', to: '/products#rcvx3' }] },
       { label: 'Public Safety', links: [{ label: 'ECB1 Emergency Call Box', to: '/products#ecb1' }, { label: 'Blue-Light Retrofit Kit', to: '/products#blue-light-retrofit' }] },
       { label: 'Antennas', links: [{ label: '5G Antennas', to: '/products#qc-antennas' }, { label: 'Wi-Fi Antennas', to: '/products#sector-wifi-antenna' }, { label: 'GNSS Antennas', to: '/products#qc-antennas' }] },
@@ -58,23 +58,31 @@ export const nav = [
 // Images are 16:9 renders (optimised copies live in /public/img); the cards are ~16:9 too, so they fill edge to edge.
 // Product tiles, in grid order (3 x 2). Swap `img` for your own product photos any time.
 export const categories = [
-  { name: '5G Routers & Modems', text: 'Primary, backup, and vehicle connectivity', img: '/img/routers.jpg', to: '/products#5g-connectivity' },
-  { name: 'Cellular Desk Phones', text: 'Business calling for desks and mobile teams', img: '/img/deskphone.jpg', to: '/products#desk-phones' },
-  { name: 'POTS Replacement', text: 'Connect existing analog phone lines', img: '/img/deskphone.jpg', to: '/products#rcvx3' },
-  { name: 'Emergency Phones & Call Boxes', text: 'Communications for campuses and public spaces', img: '/img/emergency-box.jpg', to: '/products#public-safety' },
-  { name: 'Solar & Backup Power', text: 'Power for remote and outdoor equipment', img: '/img/solar.jpg', to: '/products#power-outdoor' },
-  { name: 'Antennas & Accessories', text: 'Complete your installation with the right kit', img: '/img/antenna.jpg', to: '/products#antennas' },
+  { name: '5G Routers & Modems', text: 'Primary, backup, and vehicle connectivity', img: '/productImages/tickiot-router-light.png', to: '/products#5g-connectivity' },
+  { name: 'Cellular Desk Phones', text: 'Business calling for desks and mobile teams', img: '/productImages/tickiot-phone-light.png', to: '/products#desk-phones' },
+  { name: 'POTS Replacement', text: 'Connect existing analog phone lines', img: '/productImages/tickiot-phone-light.png', to: '/products#rcvx3' },
+  { name: 'Emergency Phones & Call Boxes', text: 'Communications for campuses and public spaces', img: '/productImages/tickiot-emergency-phone-light.png', to: '/products#public-safety' },
+  { name: 'Solar & Backup Power', text: 'Power for remote and outdoor equipment', img: '/productImages/tickiot-solar-light.png', to: '/products#power-outdoor' },
+  { name: 'Antennas & Accessories', text: 'Complete your installation with the right kit', img: '/productImages/tickiot-antenna-light.png', to: '/products#antennas' },
+]
+
+// Home hero background: crossfading product images (light, product on the right) behind the static hero text.
+export const heroSlides = [
+  { img: '/productCourosol/tickiot-carousel-light-01-router.webp', alt: 'tickIoT 5G router' },
+  { img: '/productCourosol/tickiot-carousel-light-02-phone.webp', alt: 'tickIoT cellular desk phone' },
+  { img: '/productCourosol/tickiot-carousel-light-03-emergency-phone.webp', alt: 'tickIoT emergency call box' },
+  { img: '/productCourosol/tickiot-carousel-light-05-antenna.webp', alt: 'tickIoT multi-band antenna' },
+  { img: '/productCourosol/tickiot-carousel-light-04-solar.webp', alt: 'tickIoT solar power system' },
 ]
 
 // Products page: category order drives the page's section order and the filter tabs.
-// `img` and `headline` feed the auto-playing category carousel at the top of the page.
 export const productCategories = [
-  { slug: '5g-connectivity', label: '5G Connectivity', img: '/img/routers.jpg', headline: 'Business-grade 5G, anywhere you operate.', blurb: 'Enterprise-grade 5G routers, terminals and outdoor solutions built for fixed, mobile and vehicle deployments.' },
-  { slug: 'cellular-voice', label: 'Cellular Voice', img: '/img/deskphone.jpg', headline: 'Dial tone without the copper.', blurb: 'Cellular desk phones and POTS replacement that keep dial tone alive without copper or an on-prem PBX.' },
-  { slug: 'public-safety', label: 'Public Safety', img: '/img/emergency-box.jpg', headline: 'Connected when every second counts.', blurb: 'Emergency call boxes, blue-light retrofits and first-response connectivity engineered for the moments that matter most.' },
-  { slug: 'antennas', label: 'Antennas & Accessories', img: '/img/antenna.jpg', headline: 'The right signal for every site and vehicle.', blurb: '5G, WiFi and GNSS antennas engineered for vehicles, towers and fixed sites in every mounting style.' },
-  { slug: 'power-outdoor', label: 'Power & Outdoor', img: '/img/solar.jpg', headline: 'Power and connectivity, off the grid.', blurb: "Solar, battery and outdoor hardware that keeps connectivity running where grid power and wiring aren't an option." },
-  { slug: 'software', label: 'Software', img: '/img/managed-services.jpg', headline: 'Every device, one dashboard.', blurb: 'Cloud device management for every router, phone and sensor you deploy in the field.' },
+  { slug: '5g-connectivity', label: '5G Connectivity', blurb: 'Enterprise-grade 5G routers, terminals and outdoor solutions built for fixed, mobile and vehicle deployments.' },
+  { slug: 'cellular-voice', label: 'Cellular Voice', blurb: 'Cellular desk phones and POTS replacement that keep dial tone alive without copper or an on-prem PBX.' },
+  { slug: 'public-safety', label: 'Public Safety', blurb: 'Emergency call boxes, blue-light retrofits and first-response connectivity engineered for the moments that matter most.' },
+  { slug: 'antennas', label: 'Antennas & Accessories', blurb: '5G, WiFi and GNSS antennas engineered for vehicles, towers and fixed sites in every mounting style.' },
+  { slug: 'power-outdoor', label: 'Power & Outdoor', blurb: "Solar, battery and outdoor hardware that keeps connectivity running where grid power and wiring aren't an option." },
+  { slug: 'software', label: 'Software', blurb: 'Cloud device management for every router, phone and sensor you deploy in the field.' },
 ]
 
 // Products page: one card per product, grouped by `category` (matches productCategories slugs).
@@ -84,7 +92,7 @@ export const products = [
     id: 'rc500', category: '5g-connectivity', tag: 'Flagship', name: 'RC500', tagline: '5G Router',
     summary: 'The flagship enterprise 5G router for fixed sites and vehicles, with dual-SIM failover and Wi-Fi 6.',
     specs: [['5G', 'Network'], ['Dual-SIM', 'Failover'], ['WiFi 6', 'Wireless']],
-    img: '/img/routers.jpg',
+    img: '/RC500/rc500main.png', imgFit: 'contain', // wide rear-panel shot on white: shown whole, on a white surface
     text: 'Cost-effective, enterprise-grade performance for fixed and in-vehicle deployments. Unmatched bandwidth, ultra-low latency and seamless failover keep operations connected anywhere.',
     features: ['5G', 'Dual-SIM', 'Dual-WAN Failover', 'WiFi 6', 'GPS', 'MDM-ready'],
     meta: [
@@ -96,7 +104,7 @@ export const products = [
     id: 'rc500-outdoor', category: '5g-connectivity', tag: 'Rugged', name: 'RC500 Outdoor Enclosure', tagline: '5G Solution',
     summary: 'An IP66 outdoor enclosure that takes the RC500 anywhere, with 15+ mile antennas and PoE for cameras.',
     specs: [['IP66', 'Rated'], ['15+ mi', 'Range'], ['2× PoE', 'Ports']],
-    img: '/img/solar.jpg',
+    img: '/productImages/tickiot-solar-light.png',
     text: 'Turns the RC500 or RC500-T into a fully outdoor-capable system with high-gain antennas reaching sites over 15 miles away, dual PoE ports for security cameras, and solar power for off-grid sites.',
     features: ['IP66', 'Dual PoE', '15+ Mile Range', 'WiFi 6', 'Solar-Ready'],
     meta: [
@@ -108,7 +116,7 @@ export const products = [
     id: 'rc500-t', category: '5g-connectivity', tag: '5G', name: 'RC500-T', tagline: '5G Data Terminal',
     summary: 'A compact 5G data terminal with 2.5GbE and USB 3.1, for fast broadband without a full router.',
     specs: [['5G', 'Network'], ['2.5GbE', 'Ethernet'], ['USB 3.1', 'Interface']],
-    img: '/img/routers.jpg',
+    img: '/productImages/tickiot-router-light.png',
     text: 'A compact, high-performance 5G data terminal with 2.5GbE Ethernet and USB 3.1 for fixed, mobile and remote connectivity, without the complexity of a traditional router.',
     features: ['5G', '2.5GbE Port', 'USB 3.1', 'MDM-ready'],
     meta: [
@@ -121,7 +129,7 @@ export const products = [
     id: 'desk-phones', category: 'cellular-voice', tag: 'Cellular Voice', name: 'Cellular Desk Phones', tagline: 'TK920 · TK920+ · TK100',
     summary: 'Cellular desk phones that deliver dial tone without copper, from single desks to multi-line offices.',
     specs: [['6–32', 'SIP accounts'], ['HD', 'Voice'], ['3', 'Models']],
-    img: '/img/deskphone.jpg',
+    img: '/productImages/tickiot-phone-light.png',
     text: 'A family of cellular desk phones that deliver dial tone over the cellular network instead of copper, scaled from single desks to multi-line offices.',
     features: ['6–32 SIP Accounts', 'HD Sound', 'Cordless Option', 'Cellular Dial Tone'],
     meta: [{ label: 'Models', value: 'TK920 (6 SIP accounts), TK920+ (32 SIP accounts, optional LCD expansion), TK100 (cordless)' }],
@@ -130,7 +138,7 @@ export const products = [
     id: 'rcvx3', category: 'cellular-voice', tag: 'POTS Replacement', name: 'RCVx3', tagline: 'Cellular ATA Router',
     summary: 'A cellular ATA that replaces POTS lines for alarms, elevators, fax and phones, with E911 alerts.',
     specs: [['2× FXS', 'RJ11 ports'], ['E911', 'Alerts'], ['2-day', 'Backup']],
-    img: '/img/deskphone.jpg',
+    img: '/productImages/tickiot-phone-light.png',
     text: 'Replaces traditional POTS lines with dependable cellular voice. Two FXS/RJ11 ports, automatic failover and E911 notification keep alarms, elevators, fax lines and phones online.',
     features: ['2× FXS/RJ11 Ports', 'Failover & Fallback', 'E911 Notification', '2-Day Backup Battery'],
     meta: [
@@ -143,7 +151,7 @@ export const products = [
     id: 'ecb1', category: 'public-safety', tag: 'Public Safety', name: 'ECB1', tagline: '5G Emergency Call Box',
     summary: 'A push-button 5G emergency call box with T-Priority, powered by AC, solar or PoE.',
     specs: [['5G', 'T-Priority'], ['IP67', 'Rated'], ['AC/Solar/PoE', 'Power']],
-    img: '/img/emergency-box.jpg',
+    img: '/productImages/tickiot-emergency-phone-light.png',
     text: 'A durable push-button emergency call box built on the RC500 5G router with T-Priority network access. One push connects to emergency services from schools, parks, highways and transit sites.',
     features: ['5G + T-Priority', 'E911 Alerts', 'IP67', 'Solar / AC / PoE Power'],
     meta: [{ label: 'Ideal for', value: 'Education, Business, Parks, Fire & Police Stations, Healthcare' }],
@@ -152,7 +160,7 @@ export const products = [
     id: 'blue-light-retrofit', category: 'public-safety', tag: 'Retrofit', name: 'Blue-Light POTS Retrofit Kit', tagline: 'Emergency Call Box Upgrade',
     summary: 'Upgrades existing blue-light towers and call boxes from copper to 4G/5G without replacing the tower.',
     specs: [['4G/5G', 'Upgrade'], ['Solar', 'Ready'], ['Keep', 'Your tower']],
-    img: '/img/emergency-box.jpg',
+    img: '/productImages/tickiot-emergency-phone-light.png',
     text: 'Upgrades existing blue-light towers and call boxes from POTS to 4G/5G connectivity. Add solar power, backup battery, and camera or sensor integrations without replacing the tower.',
     features: ['Cellular Antenna', 'Cellular ATA Adapter', 'Backup Battery', 'Solar Kit'],
     meta: [{ label: 'Why retrofit', value: 'Eliminates landline costs, email/SMS/voice alerts, remote monitoring' }],
@@ -170,7 +178,7 @@ export const products = [
     id: 'qc-antennas', category: 'antennas', tag: '5G / GNSS', name: 'External Antennas (QC Series)', tagline: 'Precision antennas for every frequency',
     summary: 'Five 5G, Wi-Fi 6E/7 and GNSS antenna models for vehicles and fixed sites, in every mounting style.',
     specs: [['5', 'Models'], ['9-in-1', 'Max elements'], ['WiFi 7', 'Ready']],
-    img: '/img/antenna.jpg',
+    img: '/productImages/tickiot-antenna-light.png',
     text: 'High-quality antennas covering Cellular, WiFi, GPS, LoRa, BLE and RFID frequencies, in mounting styles from adhesive glass-mount to magnetic and screw-mount.',
     features: ['5G NR MIMO', 'WiFi 6E / WiFi 7', 'GNSS', 'Custom Design Available'],
     specTable: {
@@ -186,7 +194,7 @@ export const products = [
     id: 'sector-wifi-antenna', category: 'antennas', tag: 'WiFi 6', name: 'Sector WiFi Antenna', tagline: 'Indoor / Outdoor',
     summary: 'A directional 4x4 MIMO Wi-Fi 6 antenna for focused coverage across parks, campuses and rural sites.',
     specs: [['11–14 dB', 'Gain'], ['4×4', 'MIMO'], ['IP65', 'Rated']],
-    img: '/img/antenna.jpg',
+    img: '/productImages/tickiot-antenna-light.png',
     text: 'Directional 4x4 MIMO WiFi 6 antenna for focused outdoor coverage across parks, campuses and rural sites.',
     features: ['2.4 / 5.8GHz Dual-Band', '11–14dB Gain', 'Directional', 'IP65'],
   },
@@ -194,7 +202,7 @@ export const products = [
     id: 'omni-wifi-antenna', category: 'antennas', tag: 'WiFi 6', name: 'Omni WiFi Antenna', tagline: 'Indoor / Outdoor',
     summary: 'An omni-directional 4x4 MIMO Wi-Fi 6 antenna for 360° coverage indoors and out.',
     specs: [['8–12 dB', 'Gain'], ['360°', 'Coverage'], ['IP65', 'Rated']],
-    img: '/img/antenna.jpg',
+    img: '/productImages/tickiot-antenna-light.png',
     text: 'Omni-directional 4x4 MIMO WiFi 6 antenna delivering 360° coverage for indoor spaces and rural deployments.',
     features: ['2.4 / 5.8GHz Dual-Band', '8–12dB Gain', '360° Omni-Directional', 'IP65'],
   },
@@ -203,7 +211,7 @@ export const products = [
     id: 'solar-terminal', category: 'power-outdoor', tag: 'Solar', name: 'Solar Terminal', tagline: 'ST-Series Solar Power System',
     summary: 'Plug-and-play LiFePO₄ solar power from 20Ah to 240Ah, with 12V and 48V outputs.',
     specs: [['20–240Ah', 'Capacity'], ['LiFePO₄', 'Chemistry'], ['12/48V', 'Output']],
-    img: '/img/solar.jpg',
+    img: '/productImages/tickiot-solar-light.png',
     text: 'Plug-and-play solar battery terminals from 20Ah to 240Ah with LiFePO₄ chemistry, real-time battery management, and 12V/48V outputs for any off-grid 5G or IoT deployment.',
     features: ['20–240Ah Options', 'LiFePO₄ Chemistry', '12V / 48V Output', 'Real-Time Monitoring'],
     meta: [{ label: 'Use cases', value: 'Education, Public WiFi, Surveillance, Construction, Business, Agricultural' }],
@@ -212,7 +220,7 @@ export const products = [
     id: 'solar-wifi-system', category: 'power-outdoor', tag: 'All-in-One', name: '5G Solar WiFi System', tagline: 'Self-Contained Outdoor WiFi',
     summary: 'Solar, battery, 5G and Wi-Fi in one pole-mounted system for public Wi-Fi off the grid.',
     specs: [['Off-grid', 'Power'], ['5G', 'Backhaul'], ['All-in-one', 'Install']],
-    img: '/img/solar.jpg',
+    img: '/productImages/tickiot-solar-light.png',
     text: "A self-contained solar, battery, 5G cellular and WiFi system for public WiFi coverage anywhere grid power and internet aren't available.",
     features: ['Solar + Battery', '5G Cellular Backhaul', 'WiFi Coverage', 'Off-Grid Ready'],
   },
@@ -220,7 +228,7 @@ export const products = [
     id: 'public-wifi-system', category: 'power-outdoor', tag: 'WiFi 6', name: '5G Public WiFi System', tagline: 'Powered Public Spaces',
     summary: 'Wi-Fi 6 for parks and public spaces, up to 300 users with splash pages and content filtering.',
     specs: [['3000', 'Mbps peak'], ['300', 'Users'], ['WiFi 6', '802.11ax']],
-    img: '/img/solar.jpg',
+    img: '/productImages/tickiot-solar-light.png',
     text: 'A mains or solar-powered WiFi 6 access point delivering up to 3000Mbps and supporting 150–300 concurrent users, with splash-page and content filtering built in.',
     features: ['WiFi 6 (802.11ax)', '150–300 Users', 'Splash Page', 'CIPA Content Filtering'],
   },
@@ -228,7 +236,7 @@ export const products = [
     id: 'solar-camera-system', category: 'power-outdoor', tag: 'Surveillance', name: '5G Solar Camera System', tagline: 'Remote Video Surveillance',
     summary: 'A solar-powered 5G camera kit for remote video surveillance with no local power or internet.',
     specs: [['Solar', 'Powered'], ['5G', 'Uplink'], ['PoE', 'Camera']],
-    img: '/img/solar.jpg',
+    img: '/productImages/tickiot-solar-light.png',
     text: 'An all-in-one outdoor surveillance kit — solar, battery, 5G cellular and PoE — for rapid remote camera deployment with no local power or internet required.',
     features: ['Solar + Battery', '5G Cellular', 'PoE Camera Power', 'Rapid Deployment'],
   },
@@ -236,7 +244,7 @@ export const products = [
     id: 'camera-system', category: 'power-outdoor', tag: 'Surveillance', name: '5G Camera System', tagline: 'Rapid Deployment Security',
     summary: 'A rugged 5G camera enclosure for dome, PTZ or bullet cameras, powered by PoE or AC.',
     specs: [['3', 'Camera types'], ['5G', 'Uplink'], ['PoE/AC', 'Power']],
-    img: '/img/emergency-box.jpg',
+    img: '/productImages/tickiot-emergency-phone-light.png',
     text: 'A rugged 5G-connected camera enclosure supporting dome, PTZ and bullet cameras, powered by PoE or AC, for security anywhere.',
     features: ['5G Cellular', 'PoE', 'AC Power', 'Dome / PTZ / Bullet'],
   },
@@ -294,14 +302,26 @@ export const customerLogos = [
   { name: 'Police Department', img: '/customer/police-department-badge.png' },
 ]
 
+// "Our Technology Partners" strip (home, below Proven in the Field). `h` is the logo's height in px, set per
+// logo so they look equally weighted (the Cloudflare and MediaTek files have empty space built in, so they're taller).
+export const partnerLogos = [
+  { name: 'T-Mobile', img: '/partner/tmobile.png', h: 40 },
+  { name: 'Verizon', img: '/partner/verizon.png', h: 26 },
+  { name: 'AWS', img: '/partner/aws.png', h: 38 },
+  { name: 'Cloudflare', img: '/partner/cloudflare.png', h: 56 },
+  { name: 'MediaTek', img: '/partner/mediatek.png', h: 50 },
+  { name: 'Quectel', img: '/partner/quectel.png', h: 20 },
+  { name: 'Reinvent', img: '/partner/reinvent.png', h: 30 },
+]
+
 // "One Partner. Complete Technology Solutions." strip under the hero (icons are 24x24 stroke paths)
 export const steps = [
-  { title: 'Design', icon: 'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z' },
-  { title: 'Manufacture', icon: 'M7 7h10v10H7zM10 10h4v4h-4zM9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4' },
-  { title: 'Integrate', icon: 'M12 4a2 2 0 100 .01M5 19a2 2 0 100 .01M19 19a2 2 0 100 .01M12 6v5M12 11l-6 6M12 11l6 6' },
-  { title: 'Deploy', icon: 'M14.7 6.3a4 4 0 00-5.4 5.1L3 17.7 6.3 21l6.3-6.3a4 4 0 005.1-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z' },
-  { title: 'Monitor', icon: 'M3 5h18v11H3zM8 20h8M12 16v4' },
-  { title: 'Support', icon: 'M4 14v-2a8 8 0 0116 0v2M4 14h3v5H5a1 1 0 01-1-1zM20 14h-3v5h2a1 1 0 001-1zM17 19c0 1.5-2 2-5 2' },
+  { title: 'Design', img: '/heroicons/lightbulb.png', icon: 'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z' },
+  { title: 'Manufacture', img: '/heroicons/chip.png', icon: 'M7 7h10v10H7zM10 10h4v4h-4zM9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4' },
+  { title: 'Integrate', img: '/heroicons/integration.png', icon: 'M12 4a2 2 0 100 .01M5 19a2 2 0 100 .01M19 19a2 2 0 100 .01M12 6v5M12 11l-6 6M12 11l6 6' },
+  { title: 'Deploy', img: '/heroicons/rocket.png', icon: 'M14.7 6.3a4 4 0 00-5.4 5.1L3 17.7 6.3 21l6.3-6.3a4 4 0 005.1-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z' },
+  { title: 'Monitor', img: '/heroicons/monitor.png', icon: 'M3 5h18v11H3zM8 20h8M12 16v4' },
+  { title: 'Support', img: '/heroicons/customer-support.png', icon: 'M4 14v-2a8 8 0 0116 0v2M4 14h3v5H5a1 1 0 01-1-1zM20 14h-3v5h2a1 1 0 001-1zM17 19c0 1.5-2 2-5 2' },
 ]
 
 // Complete Technology Solutions & Services: 2x2 cards. Add `img: '/img/...'` to a card to show a photo instead of the icon.
@@ -363,7 +383,7 @@ export const projects = [
   {
     tag: 'Transportation', title: 'County paratransit fleet', icon: icons.transport,
     text: 'RC500 5G routers with 9-in-1 mag-mount antennas keep ridership services on time across the county.',
-    products: [{ label: 'RC500', to: '/products#rc500' }, { label: '9-in-1 antennas', to: '/products#qc-antennas' }],
+    products: [{ label: 'RC500', to: '/products/rc500' }, { label: '9-in-1 antennas', to: '/products#qc-antennas' }],
   },
   {
     tag: 'Public Safety', title: 'City parks', icon: icons.shield,
@@ -373,12 +393,12 @@ export const projects = [
   {
     tag: 'Smart City', title: 'Parking meter retrofit', icon: icons.city,
     text: 'RC500 5G retrofit brings existing parking meters online without replacing them.',
-    products: [{ label: 'RC500', to: '/products#rc500' }],
+    products: [{ label: 'RC500', to: '/products/rc500' }],
   },
   {
     tag: 'Education', title: 'Community college campus', icon: icons.education,
     text: 'TK920 desk phones and RC500 routers deliver classroom phone service and connectivity.',
-    products: [{ label: 'TK920', to: '/products#desk-phones' }, { label: 'RC500', to: '/products#rc500' }],
+    products: [{ label: 'TK920', to: '/products#desk-phones' }, { label: 'RC500', to: '/products/rc500' }],
   },
 ]
 
@@ -428,3 +448,65 @@ export const footer = [
     ],
   },
 ]
+
+// Full product pages (/products/:id), keyed by product id. Content from the product catalog.
+// A product without an entry here has no page; its card's details panel is its full view.
+const RC500_DIR = '/RC500/QikCell Product Catalog n25113.pdf'
+const featureIcons = {
+  fiveG: 'M4 20v-3M9 20v-7M14 20V9M19 20V4',
+  wifi: 'M2 9a15 15 0 0120 0M5 12.5a10 10 0 0114 0M8.5 16a5 5 0 017 0M12 19.5h.01',
+  mdm: 'M7 18a4 4 0 01-.6-7.96A6 6 0 0118 9a4.5 4.5 0 01-1 9H7zM9.5 13.5l2.5-2.5 2.5 2.5M12 11v5',
+  sensors: 'M12 12h.01M8.5 8.5a5 5 0 000 7M15.5 8.5a5 5 0 010 7M5.6 5.6a9 9 0 000 12.8M18.4 5.6a9 9 0 010 12.8',
+  dualWan: 'M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9M12 3c-2.5 2.5-3.8 5.5-3.8 9s1.3 6.5 3.8 9',
+  gps: 'M12 21s-7-6.2-7-12a7 7 0 0114 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',
+  failover: 'M8 7l-5 5 5 5M16 7l5 5-5 5M9 12h.01M12 12h.01M15 12h.01',
+  usb: 'M9 3h6v5H9zM7 8h10v8a5 5 0 01-10 0V8zM11 5h.01M13 5h.01',
+  sim: 'M6 3h9l4 4v14H6zM9 11h7v6H9zM12.5 11v6M9 14h7',
+  satellite: 'M10 10l4 4M12 8l4 4-2 2-4-4zM6 4l4 4-2 2-4-4zM16 14l4 4-2 2-4-4zM4 20c0-2.2 1.8-4 4-4',
+  business: 'M4 21V5l8-2v18M12 21V9l8 2v10M3 21h18M7 8h2M7 12h2M7 16h2M15 13h2M15 17h2',
+  health: 'M9 3h6v6h6v6h-6v6H9v-6H3V9h6z',
+}
+
+export const productPages = {
+  rc500: {
+    headline: 'One Platform. Limitless Possibilities.',
+    img: '/RC500/rc500main.png',
+    description: "Introducing the RC500, your gateway to next-generation business connectivity. Designed for both fixed and in-vehicle deployments, the RC500 delivers cost-effective, enterprise-grade performance in even the most demanding outdoor environments. Whether you're meeting basic needs or advanced requirements, this feature-rich platform offers unmatched bandwidth, ultra-low latency, and seamless communication. Built for speed, scalability, and reliability, the RC500 keeps your operations connected: anytime, anywhere.",
+    // `to`: the matching product on the Products page, if there is one
+    accessories: [
+      { name: 'Outdoor Antenna', img: `${RC500_DIR} (29).png`, to: '/products#qc-antennas' },
+      { name: 'Solar System', img: `${RC500_DIR} (31).png`, to: '/products#solar-terminal' },
+      { name: 'Outdoor Enclosure', img: `${RC500_DIR} (30).png`, to: '/products#rc500-outdoor' },
+      { name: 'Backup UPS', img: `${RC500_DIR} (27).png`, to: '/products#bt11' },
+      { name: 'Vehicle Kit', img: `${RC500_DIR} (32).png` },
+    ],
+    features: [
+      { label: '5G', icon: featureIcons.fiveG },
+      { label: 'WiFi 6', icon: featureIcons.wifi },
+      { label: 'MDM', icon: featureIcons.mdm },
+      { label: 'Sensors', icon: featureIcons.sensors },
+      { label: 'Dual-WAN', icon: featureIcons.dualWan },
+      { label: 'GPS', icon: featureIcons.gps },
+      { label: 'Failover', icon: featureIcons.failover },
+      { label: 'USB', icon: featureIcons.usb },
+      { label: 'Dual-SIM', icon: featureIcons.sim },
+      { label: 'Satellite', icon: featureIcons.satellite },
+    ],
+    useCases: [
+      { label: 'Education', icon: icons.education },
+      { label: 'Business', icon: featureIcons.business },
+      { label: 'Transportation', icon: icons.transport },
+      { label: 'Public Safety', icon: icons.shield },
+      { label: 'Healthcare', icon: featureIcons.health },
+    ],
+    // Read off the rear-panel photo
+    ports: [
+      { label: 'Cellular', value: 'Dual SIM slots (SIM1, SIM2) with automatic failover' },
+      { label: 'Ethernet', value: '3 × LAN, 1 × LAN/WAN (LAN4/WAN2), 1 × WAN' },
+      { label: 'USB', value: '1 × USB' },
+      { label: 'Controls', value: 'Action and Reset buttons' },
+      { label: 'Indicators', value: 'Internet, Cellular and Signal status LEDs' },
+      { label: 'Power', value: '4-pin DC power input' },
+    ],
+  },
+}

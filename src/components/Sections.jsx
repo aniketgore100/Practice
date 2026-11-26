@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { steps, services, industries, whyItems, proofStats, projects, footer, contact, customerLogos } from '../data/content'
+import { steps, services, industries, whyItems, proofStats, projects, footer, contact, customerLogos, partnerLogos } from '../data/content'
 import { Logo } from './Header'
 
 const YEAR = new Date().getFullYear()
@@ -12,22 +12,38 @@ const Icon = ({ d, size = 26 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
 )
 
-// "Brought internet to": infinite right-to-left auto-scrolling logo strip
-export function TrustedBy() {
+// Infinite right-to-left logo strip. The rail holds two identical halves and slides by one half per loop.
+// `repeat` copies the set inside each half so a short list still fills the width; copies are hidden from screen readers.
+function LogoStrip({ title, logos, repeat = 1, duration, className = '' }) {
+  const half = Array.from({ length: repeat }, () => logos).flat()
   return (
-    <section className="trusted" aria-label="Brought internet to">
+    <section className={`trusted ${className}`} aria-label={title}>
       <div className="container">
-        <h2 className="trusted__head">Brought internet to</h2>
-        <div className="trusted__track" role="presentation">
-          <ul className="trusted__rail">
-            {[...customerLogos, ...customerLogos].map((c, n) => (
-              <li key={`${c.name}-${n}`}><img src={c.img} alt={c.name} loading="lazy" /></li>
-            ))}
+        <h2 className="trusted__head">{title}</h2>
+        <div className="trusted__track">
+          <ul className="trusted__rail" style={duration ? { animationDuration: duration } : undefined}>
+            {[...half, ...half].map((c, n) => {
+              const copy = n >= logos.length
+              return (
+                <li key={`${c.name}-${n}`} aria-hidden={copy || undefined}>
+                  <img src={c.img} alt={copy ? '' : c.name} loading="lazy" style={c.h ? { '--h': `${c.h}px` } : undefined} />
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>
     </section>
   )
+}
+
+export function TrustedBy() {
+  return <LogoStrip title="Brought internet to" logos={customerLogos} />
+}
+
+// Seven logos: repeated twice per half so the strip stays full; a shorter loop keeps the same speed as the customer strip.
+export function Partners() {
+  return <LogoStrip title="Our Technology Partners" logos={partnerLogos} repeat={2} duration="34s" className="trusted--partners" />
 }
 
 export function Steps() {
@@ -38,7 +54,9 @@ export function Steps() {
         <ul className="steps__grid">
           {steps.map((s) => (
             <li key={s.title}>
-              <span className="steps__icon"><Icon d={s.icon} /></span>
+              <span className="steps__icon">
+                {s.img ? <span className="steps__mask" style={{ '--icon': `url("${s.img}")` }} aria-hidden="true" /> : <Icon d={s.icon} />}
+              </span>
               <b>{s.title}</b>
             </li>
           ))}
